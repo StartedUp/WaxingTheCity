@@ -30,6 +30,6 @@ public class FormController {
     public String generatePdf(@ModelAttribute RegBean regBean){
         LOGGER.info("Generating pdf {}", regBean);
         pdfService.generatePdf(regBean);
-        return "redirect:/";
+        return "redirect";
     }
 }
