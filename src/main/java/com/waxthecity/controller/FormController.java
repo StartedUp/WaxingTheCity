@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Balaji on 7/12/17.
@@ -26,10 +30,18 @@ public class FormController {
         return "waxingTheCityForm";
     }
 
-    @RequestMapping(value = "generate" , method = RequestMethod.POST)
-    public String generatePdf(@ModelAttribute RegBean regBean){
+    @RequestMapping(value = "/generate" , method = RequestMethod.POST)
+    public String generatePdf(@ModelAttribute RegBean regBean,
+                              BindingResult result, Model model){
         LOGGER.info("Generating pdf {}", regBean);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        String dateValue = sdf.format(new Date());
+        if (result.hasErrors()){
+            return "waxingTheCityForm";
+        }
         pdfService.generatePdf(regBean);
+        model.addAttribute("form", regBean)
+                .addAttribute("date",dateValue);
         return "redirect";
     }
 }

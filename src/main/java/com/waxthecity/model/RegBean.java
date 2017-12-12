@@ -1,19 +1,31 @@
 package com.waxthecity.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Created by Balaji on 8/12/17.
  */
 public class RegBean {
-    String name;
-    String acneMedicines;
-    String acnePeriod;
-    String bleachingAgent;
-    String bleachingAgentPeriod;
-    String alergy;
-    boolean diabetic;
-    boolean pregnant;
-    String minor;
-    String limitation;
+    //@NotEmpty
+    private String name;
+    //@NotEmpty
+    private String acneMedicines;
+    //@NotEmpty
+    private String acnePeriod;
+    //@NotEmpty
+    private String bleachingAgent;
+    //@NotEmpty
+    private String bleachingAgentPeriod;
+    //@NotEmpty
+    private String illness;
+    //@NotEmpty
+    private String alergy;
+    //@NotEmpty
+    private boolean diabetic;
+    //@NotEmpty
+    private boolean pregnant;
+    //@NotEmpty
+    private String limitation;
 
     public String getName() {
         return name;
@@ -55,6 +67,14 @@ public class RegBean {
         this.bleachingAgentPeriod = bleachingAgentPeriod;
     }
 
+    public String getIllness() {
+        return illness;
+    }
+
+    public void setIllness(String illness) {
+        this.illness = illness;
+    }
+
     public String getAlergy() {
         return alergy;
     }
@@ -79,23 +99,13 @@ public class RegBean {
         this.pregnant = pregnant;
     }
 
-    public String getMinor() {
-        return minor;
-    }
-
-    public void setMinor(String minor) {
-        this.minor = minor;
-    }
-
     public String getLimitation() {
         return limitation;
     }
 
     public void setLimitation(String limitation) {
-        this.limitation = limitation;
+        this.limitation=limitation;
     }
-
-
 
     @Override
     public String toString() {
@@ -105,10 +115,10 @@ public class RegBean {
                 ", acnePeriod='" + acnePeriod + '\'' +
                 ", bleachingAgent='" + bleachingAgent + '\'' +
                 ", bleachingAgentPeriod='" + bleachingAgentPeriod + '\'' +
+                ", illness='" + illness + '\'' +
                 ", alergy='" + alergy + '\'' +
                 ", diabetic=" + diabetic +
                 ", pregnant=" + pregnant +
-                ", minor='" + minor + '\'' +
                 ", limitation='" + limitation + '\'' +
                 '}';
     }
