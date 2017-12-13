@@ -1,10 +1,8 @@
 package com.waxthecity.service;
 
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.AcroFields;
-import com.itextpdf.text.pdf.PdfFormField;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfStamper;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.*;
 import com.waxthecity.model.RegBean;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
@@ -15,7 +13,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
 import javax.validation.Valid;
+import javax.xml.bind.DatatypeConverter;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import static javax.swing.text.html.HTML.Tag.IMG;
 
 /**
  * Created by Balaji on 8/12/17.
@@ -36,11 +39,18 @@ public class PdfService {
     private String srcPdfDir;
     @Value("${pdf.field.names}")
     private List<String> fieldNames;
+    @Value("${pdf.sign.image.path}")
+    private String signImagePath;
 
     public void generatePdf(RegBean regBean) {
         LOGGER.info("generating pdf. Source pdf {}", srcPdfDir);
-        // TODO: 8/12/17 copy source pdf to dest 
-        // TODO: 8/12/17 read the copied pdf 
+        try {
+            createSignature(regBean);
+        } catch (Exception e) {
+            LOGGER.warn("Error creating image -->", e);
+        }
+        // TODO: 8/12/17 copy source pdf to dest
+        // TODO: 8/12/17 read the copied pdf
         // TODO: 8/12/17 edit the copied pdf and save
         PdfStamper stamper = null;
         PdfReader reader = null;
@@ -91,6 +101,20 @@ public class PdfService {
                     regBean.isPregnant()?"On":"Off");
             form.setField("No_2",
                     regBean.isPregnant()?"Off":"On");
+            LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
+
+
+                    Image image = Image.getInstance("wtcPdf/signImages/" + dateValue + regBean.getName() + ".png");
+                    PdfImage stream = new PdfImage(image, "", null);
+                    stream.put(new PdfName("Sign"), new PdfName(dateValue + regBean.getName() + ".pdf"));
+                    PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
+                    image.setDirectReference(ref.getIndirectReference());
+                    image.setAbsolutePosition(100, 437);
+                    image.scaleAbsolute(200, 20);
+                    PdfContentByte over = stamper.getOverContent(2);
+                    over.addImage(image);
+
+
             stamper.setFormFlattening(true);
             stamper.close();
             PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
@@ -120,6 +144,21 @@ public class PdfService {
         }
     }
 
+    private void createSignature(RegBean regBean) throws Exception{
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        String dateValue = sdf.format(new Date());
+        File imageFile = new File(
+                signImagePath+dateValue+regBean.getName()+".png");
+        if (!imageFile.exists()) {
+            imageFile.getParentFile().mkdir();
+        }
+        byte[] imagedata = DatatypeConverter.parseBase64Binary(
+                regBean.getImageData().substring(
+                        regBean.getImageData().indexOf(",") + 1)
+        );
+        BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
+        ImageIO.write(bufferedImage, "png", imageFile);
+    }
 
     public File copySourceFile(RegBean regBean) throws IOException {
         File source = new File(srcPdfDir);

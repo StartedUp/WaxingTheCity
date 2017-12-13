@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <head>
         <title>WaxingTheCityForm</title>
@@ -12,12 +13,40 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
+              rel="stylesheet">
+        <link href="css/jquery.signature.css" rel="stylesheet">
+        <style>
+            .kbw-signature {
+                width: 400px;
+                height: 200px;
+            }
+        </style>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script src="js/jquery.signature.js"></script>
+        <script>
+            $(function () {
+                var sig = $('#sig').signature({
+                    syncField: '#imageData',
+                    syncFormat: 'PNG'
+                });
+
+                $('#clear').click(function () {
+                    sig.signature('clear');
+                });
+            });
+        </script>
+
     </head>
 <body>
 <div class="container">
-    <div class='row'><div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div></div>
+    <div class='row'>
+        <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
+    </div>
     <div class="row" id="header">
-        <div class="col-sm-12" style="height: 100px;"><img src="logo.jpg" height="52" width="182"></div>
+        <div class="col-sm-12" style="height: 100px;"><img src="img/logo1.jpg" height="52" width="182"></div>
     </div>
     <form action="/generate" method="post">
         <div class="form-group">
@@ -25,7 +54,8 @@
             <input type="text" class="form-control" id="name" name="name">
         </div>
         <div class="form-group">
-            <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning ACNE MEDICATIONS, orally or topically?
+            <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning ACNE
+                MEDICATIONS, orally or topically?
                 Please list:</label>
             <input type="text" class="form-control" id="acne" name="acneMedicines">
         </div>
@@ -34,7 +64,9 @@
             <input type="text" class="form-control" id="time" name="acnePeriod">
         </div>
         <div class="form-group">
-            <label for="bleaching">Are you currently using any BLEACHING AGENTS for your facial or body hair or bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids (Glycolic,Lactic),Salicylic Acids or other exfoliants?
+            <label for="bleaching">Are you currently using any BLEACHING AGENTS for your facial or body hair or
+                bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
+                (Glycolic,Lactic),Salicylic Acids or other exfoliants?
                 Please list:</label>
             <input type="text" class="form-control" id="bleaching" name="bleachingAgent">
         </div>
@@ -47,42 +79,54 @@
             <input type="text" class="form-control" id="illness" name="illness">
         </div>
         <div class="form-group">
-            <label for="alergy">Do you have any allergic reactions or allergies to flower/fruit extracts, talcum powder or aspirin?</label>
+            <label for="alergy">Do you have any allergic reactions or allergies to flower/fruit extracts, talcum powder
+                or aspirin?</label>
             <input type="text" class="form-control" id="alergy" name="alergy">
         </div>
         <div class="form-group">
             <label for="diabetic">Are you diabetic?</label>
             <select class="form-control" id="diabetic" name='diabetic'>
-            <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-            <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-        </select>
+                <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
+                <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="pregnant">Are you / Could you be pregnant?</label>
             <select class="form-control" id="pregnant" name='pregnant'>
-            <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-            <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-        </select>
+                <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
+                <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
+            </select>
         </div>
 
         <div class="alert alert-info">
-        <h3>CONSENT</h3>
-        I hereby request and grant permission to Waxing the City to administer waxing services and I voluntarily agree
-        to be treated by a licensed esthetician.I confirm to the best of my knowledge that the information I have provided
-        is accurate and complete, and I have received general information about the service I am seeking.I have not withheld
-        information that may be relevant to the services or the results thereof. I am aware that there are often inherent
-        risks associated with waxing and tinting procedures, and the services I am about to receive could have unfavorable
-        and uncomfortable results,including but not limited to:allergic reaction, irritation, burning, redness,scarring,soreness, etc.
-        By signing below, I freely assume these risks and I agree that I will not hold the Waxing the City salon or its owners or
-        any of its employees responsible should there be any unfavorable outcome or result.I will inform Waxing the City of any complications
-        or concerns I may have as soon as they occur, and any changes to the information in this form. I understand I should
-        refrain from tanning and/or direct sun exposure within 24-48 hours of waxing. I also understand that I should not have Micro-dermabrasion
-        or "peels" 3 days pre- or post-waxing.I have read,understand, and agree to the above provsions.
+            <h3>CONSENT</h3>
+            I hereby request and grant permission to Waxing the City to administer waxing services and I voluntarily
+            agree
+            to be treated by a licensed esthetician.I confirm to the best of my knowledge that the information I have
+            provided
+            is accurate and complete, and I have received general information about the service I am seeking.I have not
+            withheld
+            information that may be relevant to the services or the results thereof. I am aware that there are often
+            inherent
+            risks associated with waxing and tinting procedures, and the services I am about to receive could have
+            unfavorable
+            and uncomfortable results,including but not limited to:allergic reaction, irritation, burning,
+            redness,scarring,soreness, etc.
+            By signing below, I freely assume these risks and I agree that I will not hold the Waxing the City salon or
+            its owners or
+            any of its employees responsible should there be any unfavorable outcome or result.I will inform Waxing the
+            City of any complications
+            or concerns I may have as soon as they occur, and any changes to the information in this form. I understand
+            I should
+            refrain from tanning and/or direct sun exposure within 24-48 hours of waxing. I also understand that I
+            should not have Micro-dermabrasion
+            or "peels" 3 days pre- or post-waxing.I have read,understand, and agree to the above provsions.
             <br/>
         </div>
         <div class="alert alert-info">
             <h3>Parent or Guardian Consent (Must be completed for clients Under the Age of 18):</h3>
-            I authorize Waxing the City estheticians to perform waxing treatments and other services on("Minor"). This authorization is ongoing until written notification from me that
+            I authorize Waxing the City estheticians to perform waxing treatments and other services on("Minor"). This
+            authorization is ongoing until written notification from me that
             the authorization is revoked or modified.This authorization includes all services offered by
             Waxing the City,except as follows:
             <br/>
@@ -92,11 +136,20 @@
                 [note any limitations on consent].
             </div>
             <br/>
-            <b>I confirm to the best of my knowledge that the information provided in this form by Minor is accuarte and complete.</b>
+            <b>I confirm to the best of my knowledge that the information provided in this form by Minor is accuarte and
+                complete.</b>
         </div>
-        <div class="form-group">
-            <label for="sign">Signature:</label>
-            <input type="text" class="form-control" id="sign" name="sign">
+        <label for="sig">Signature:</label>
+        <div class="row center">
+            <div class="form-group">
+                <div id="sig"/>
+            </div>
+            <p style="clear: both;">
+                <button id="clear">Clear</button>
+            </p>
+        </div>
+        <div style="display: none">
+            <input type="textarea" id="imageData" name="imageData">
         </div>
         <br/>
         <input type="submit" value="submit" class="btn btn-info btn-lg"/>

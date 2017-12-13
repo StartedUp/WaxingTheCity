@@ -27,6 +27,16 @@ public class RegBean {
     //@NotEmpty
     private String limitation;
 
+    private String imageData;
+
+    public String getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(String imageData) {
+        this.imageData = imageData;
+    }
+
     public String getName() {
         return name;
     }
