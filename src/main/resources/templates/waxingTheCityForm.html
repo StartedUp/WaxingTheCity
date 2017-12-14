@@ -56,32 +56,66 @@
         <div class="form-group">
             <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning ACNE
                 MEDICATIONS, orally or topically?
-                Please list:</label>
-            <input type="text" class="form-control" id="acne" name="acneMedicines">
+            </label>
+            <select class="form-control" id="acne" name='acneMedicines'>
+                <option data-toggle="tooltip" value="Yes" title="Hooray!">YES</option>
+                <option data-toggle="tooltip" value="No" title="Hooray!">NO</option>
+            </select>
+        </div>
+        <script>
+            function disableTxt() {
+                document.getElementById("list1").disabled = true;
+                document.getElementById("time1").disabled = true;
+                document.getElementById("list2").disabled = true;
+                document.getElementById("time2").disabled = true;
+            }
+            function undisableTxt() {
+                document.getElementById("list1").disabled = false;
+                document.getElementById("time1").disabled = false;
+                document.getElementById("list2").disabled = false;
+                document.getElementById("time2").disabled = false;
+            }
+        </script>
+        <div class="form-group">
+            <label for="list1">Please List:</label>
+            <input type="text" class="form-control" id="list1" name="acneMedicines">
         </div>
         <div class="form-group">
-            <label for="time">How long / How often?</label>
-            <input type="text" class="form-control" id="time" name="acnePeriod">
+            <label for="time1">How long / How often?</label>
+            <input type="text" class="form-control" id="time1" name="acnePeriod">
         </div>
         <div class="form-group">
             <label for="bleaching">Are you currently using any BLEACHING AGENTS for your facial or body hair or
                 bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
                 (Glycolic,Lactic),Salicylic Acids or other exfoliants?
-                Please list:</label>
-            <input type="text" class="form-control" id="bleaching" name="bleachingAgent">
+            </label>
+            <select class="form-control" id="bleaching" name='bleachingAgent'>
+                <option data-toggle="tooltip" value="Yes" title="Hooray!">YES</option>
+                <option data-toggle="tooltip" value="No" title="Hooray!">NO</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="bleachingTime">How long / How often?</label>
-            <input type="text" class="form-control" id="bleachingTime" name="bleachingAgentPeriod">
+            <label for="list2" >Please list:</label>
+            <input type="text" class="form-control" id="list2" name="bleachingAgent">
+        </div>
+        <div class="form-group">
+            <label for="time2">How long / How often?</label>
+            <input type="text" class="form-control" id="time2" name="bleachingAgentPeriod">
         </div>
         <div class="form-group">
             <label for="illness">Any other illness/condition a medical professional is treating you for?</label>
             <input type="text" class="form-control" id="illness" name="illness">
         </div>
         <div class="form-group">
-            <label for="alergy">Do you have any allergic reactions or allergies to flower/fruit extracts, talcum powder
+            <label for="alergy" class="radio-inline">Do you have any allergic reactions or allergies to flower/fruit extracts, talcum powder
                 or aspirin?</label>
+<!--
             <input type="text" class="form-control" id="alergy" name="alergy">
+-->
+        </div>
+        <div class="form-group" id="alergy">
+            <input type="radio" name="alergy" value="Yes">Yes
+            <input type="radio" name="alergy" value="No">No
         </div>
         <div class="form-group">
             <label for="diabetic">Are you diabetic?</label>
