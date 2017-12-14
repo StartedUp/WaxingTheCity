@@ -1,5 +1,12 @@
 package com.waxthecity.service;
 
+import com.dropbox.core.DbxException;
+import com.dropbox.core.DbxRequestConfig;
+import com.dropbox.core.v2.DbxClientV2;
+import com.dropbox.core.v2.files.FileMetadata;
+import com.dropbox.core.v2.files.ListFolderResult;
+import com.dropbox.core.v2.files.Metadata;
+import com.dropbox.core.v2.users.FullAccount;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.*;
@@ -54,6 +61,7 @@ public class PdfService {
         // TODO: 8/12/17 edit the copied pdf and save
         PdfStamper stamper = null;
         PdfReader reader = null;
+        PDDocument pdDocument=null;
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
             String dateValue = sdf.format(new Date());
@@ -117,7 +125,7 @@ public class PdfService {
 
             stamper.setFormFlattening(true);
             stamper.close();
-            PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
+            pdDocument = PDDocument.load(new File(srcPdfDir));
             PDDocumentCatalog pdCatalog = pdDocument.getDocumentCatalog();
             PDAcroForm pdAcroForm = pdCatalog.getAcroForm();
             LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
@@ -140,6 +148,13 @@ public class PdfService {
             }
             if (reader != null) {
                 reader.close();
+            }
+            if (pdDocument!=null){
+                try {
+                    pdDocument.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -189,4 +204,37 @@ public class PdfService {
         }
         return fields;
     }
+    private static final String ACCESS_TOKEN = "OE_ClCrxDZAAAAAAAAABUhpa7XwTwnRxA09vl_7BQMg2CtKGAav51PPU22IxTBvD";
+
+    public void putInDropbox() throws DbxException, IOException {
+        // Create Dropbox client
+        DbxRequestConfig config = new DbxRequestConfig("home/2017", "en_US");
+        DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
+
+        // Get current account info
+        FullAccount account = client.users().getCurrentAccount();
+        LOGGER.info("drop box account info {} ", account.getName().getDisplayName());
+
+        // Get files and folder metadata from Dropbox root directory
+        ListFolderResult result = client.files().listFolder("");
+        while (true) {
+            for (Metadata metadata : result.getEntries()) {
+                LOGGER.info("folders list {} ", metadata.getPathLower());
+            }
+
+            if (!result.getHasMore()) {
+                break;
+            }
+
+            result = client.files().listFolderContinue(result.getCursor());
+        }
+
+        // Upload "test.txt" to Dropbox
+        try (InputStream in = new FileInputStream(srcPdfDir)) {
+            FileMetadata metadata = client.files().uploadBuilder("/"+srcPdfDir)
+                    .uploadAndFinish(in);
+            LOGGER.info(" path of local {} ",("/"+srcPdfDir));
+        }
+    }
 }
+

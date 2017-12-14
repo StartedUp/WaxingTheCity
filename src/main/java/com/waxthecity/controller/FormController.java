@@ -1,5 +1,6 @@
 package com.waxthecity.controller;
 
+import com.dropbox.core.DbxException;
 import com.waxthecity.model.RegBean;
 import com.waxthecity.service.PdfService;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -44,4 +46,18 @@ public class FormController {
                 .addAttribute("date",dateValue);
         return "redirect";
     }
+    @RequestMapping("/dropbox")
+    public String drop() {
+        LOGGER.info("dropbox waxing the city form");
+        try {
+            pdfService.putInDropbox();
+        } catch (DbxException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "waxingTheCityForm";
+    }
 }
+have to go to the class for hibernate.. at 11.45
+i don5 hav3 time ok
