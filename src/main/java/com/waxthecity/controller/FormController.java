@@ -59,5 +59,3 @@ public class FormController {
         return "waxingTheCityForm";
     }
 }
-have to go to the class for hibernate.. at 11.45
-i don5 hav3 time ok
