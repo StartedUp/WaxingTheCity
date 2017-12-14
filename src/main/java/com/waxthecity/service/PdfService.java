@@ -63,7 +63,6 @@ public class PdfService {
         // TODO: 8/12/17 edit the copied pdf and save
         PdfStamper stamper = null;
         PdfReader reader = null;
-        PDDocument pdDocument=null;
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
         String dateValue = sdf.format(new Date());
         String pdfName=dateValue + regBean.getName() + ".pdf";
@@ -129,7 +128,7 @@ public class PdfService {
 
             stamper.setFormFlattening(true);
             stamper.close();
-            pdDocument = PDDocument.load(new File(srcPdfDir));
+            PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
             PDDocumentCatalog pdCatalog = pdDocument.getDocumentCatalog();
             PDAcroForm pdAcroForm = pdCatalog.getAcroForm();
             LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
@@ -153,13 +152,6 @@ public class PdfService {
             }
             if (reader != null) {
                 reader.close();
-            }
-            if (pdDocument!=null){
-                try {
-                    pdDocument.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
 
@@ -185,7 +177,6 @@ public class PdfService {
         File source = new File(srcPdfDir);
         if (!source.exists()) {
             source.getParentFile().mkdir();
-            //source.createNewFile();
         }
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
@@ -193,10 +184,7 @@ public class PdfService {
         File file = new File(copyPdfDir);
         if (!file.isDirectory())
             file.mkdir();
-        /*if (!file.exists()) {
-            file.getParentFile().mkdir();
-           // file.createNewFile();
-        }*/
+
         File destination = new File(copyPdfDir + dateString + regBean.getName() + ".pdf");
         FileChannel src = new FileInputStream(source).getChannel();
         FileChannel dest = new FileOutputStream(destination).getChannel();
