@@ -81,7 +81,7 @@ public class PdfService {
             String illness = "Any other illnesscondition a medical professional is treating you for";
             String alergy = "Do you have any allergic reactions or allergies to flowerfruit extracts talcum powder or aspirin";
             String limitation = "Note any limitations on";
-            String creDate = "Date";
+            String creDate = "Date.0";
             // String field=form.getField(fieldName);
             form.setGenerateAppearances(true);
             LOGGER.info("List {}", fieldNames);

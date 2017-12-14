@@ -46,5 +46,4 @@ public class FormController {
                 .addAttribute("date",dateValue);
         return "redirect";
     }
-
 }
