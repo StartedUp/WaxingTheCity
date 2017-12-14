@@ -46,18 +46,5 @@ public class FormController {
                 .addAttribute("date",dateValue);
         return "redirect";
     }
-    @RequestMapping("/dropbox")
-    public String drop() {
-        LOGGER.info("dropbox waxing the city form");
-        try {
-            pdfService.putInDropbox();
-        } catch (DbxException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "waxingTheCityForm";
-    }
+
 }
-have to go to the class for hibernate.. at 11.45
-i don5 hav3 time ok

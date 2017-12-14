@@ -48,6 +48,8 @@ public class PdfService {
     private List<String> fieldNames;
     @Value("${pdf.sign.image.path}")
     private String signImagePath;
+    @Value("${dropbox.access.token}")
+    private String ACCESS_TOKEN ;
 
     public void generatePdf(RegBean regBean) {
         LOGGER.info("generating pdf. Source pdf {}", srcPdfDir);
@@ -62,12 +64,14 @@ public class PdfService {
         PdfStamper stamper = null;
         PdfReader reader = null;
         PDDocument pdDocument=null;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
+        String dateValue = sdf.format(new Date());
+        String pdfName=dateValue + regBean.getName() + ".pdf";
+
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-            String dateValue = sdf.format(new Date());
             File file = copySourceFile(regBean);
             reader = new PdfReader(srcPdfDir);
-            stamper = new PdfStamper(reader, new FileOutputStream(copyPdfDir + dateValue + regBean.getName() + ".pdf"));
+            stamper = new PdfStamper(reader, new FileOutputStream(copyPdfDir + pdfName));
             AcroFields form = stamper.getAcroFields();
             String fieldName = "Client Name";
             String list1 = "Please list";
@@ -132,9 +136,10 @@ public class PdfService {
             for (PDField pdField : pdAcroForm.getFields()) {
                 System.out.println(pdField);
             }
+            putInDropbox(pdfName);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (DocumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (stamper != null) {
@@ -157,6 +162,7 @@ public class PdfService {
                 }
             }
         }
+
     }
 
     private void createSignature(RegBean regBean) throws Exception{
@@ -204,36 +210,21 @@ public class PdfService {
         }
         return fields;
     }
-    private static final String ACCESS_TOKEN = "OE_ClCrxDZAAAAAAAAABUhpa7XwTwnRxA09vl_7BQMg2CtKGAav51PPU22IxTBvD";
 
-    public void putInDropbox() throws DbxException, IOException {
+    public void putInDropbox(String pdfName) throws DbxException, IOException {
         // Create Dropbox client
-        DbxRequestConfig config = new DbxRequestConfig("home/2017", "en_US");
+        DbxRequestConfig config = new DbxRequestConfig("dropbox/2017", "en_US");
         DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
 
         // Get current account info
         FullAccount account = client.users().getCurrentAccount();
         LOGGER.info("drop box account info {} ", account.getName().getDisplayName());
 
-        // Get files and folder metadata from Dropbox root directory
-        ListFolderResult result = client.files().listFolder("");
-        while (true) {
-            for (Metadata metadata : result.getEntries()) {
-                LOGGER.info("folders list {} ", metadata.getPathLower());
-            }
-
-            if (!result.getHasMore()) {
-                break;
-            }
-
-            result = client.files().listFolderContinue(result.getCursor());
-        }
-
         // Upload "test.txt" to Dropbox
-        try (InputStream in = new FileInputStream(srcPdfDir)) {
-            FileMetadata metadata = client.files().uploadBuilder("/"+srcPdfDir)
+        try (InputStream in = new FileInputStream(copyPdfDir+pdfName)) {
+            FileMetadata metadata = client.files().uploadBuilder("/2017/"+pdfName)
                     .uploadAndFinish(in);
-            LOGGER.info(" path of local {} ",("/"+srcPdfDir));
+            LOGGER.info(" path of local {} ",("/2017/"+pdfName));
         }
     }
 }
