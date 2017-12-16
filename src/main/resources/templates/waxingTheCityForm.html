@@ -23,35 +23,10 @@
 
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
           rel="stylesheet">
-    <!--
-            <link href="css/jquery.signature.css" rel="stylesheet">
-            <style>
-                .kbw-signature {
-                    width: 400px;
-                    height: 200px;
-                }
-            </style>
-    -->
-    <!--<script src="js/signature_pad.js"></script>
-    <script src="js/app.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
-    <!--
-            <script src="js/jquery.signature.js"></script>
-    -->
 
     <script src="js/jq-signature.min.js"></script>
 
     <script>
-        /*$(function () {
-         var sig = $('#sig').signature({
-         syncField: '#imageData',
-         syncFormat: 'PNG'
-         });
-
-         $('#clear').click(function () {
-         sig.signature('clear');
-         });
-         });*/
         $(document).ready(function () {
             $('.js-signature').jqSignature();
             $('.js-signature').on('jq.signature.changed', function () {
@@ -64,29 +39,29 @@
 
             $('select').on('change', function () {
                 if (this.id == 'acne') {
-                    if (this.value == 'false') {
-                        $('#list1,#time1').prop('disabled', true)
+                    if (this.value == 'true') {
+                        $('#list1,#time1').prop('disabled', false)
                     }
                     else {
-                        $('#list1,#time1').prop('disabled', false)
+                        $('#list1,#time1').prop('disabled', true)
                     }
                 }
 
                 if (this.id == 'bleaching') {
-                    if (this.value == 'false') {
-                        $('#list2,#time2').prop('disabled', true)
+                    if (this.value == 'true') {
+                        $('#list2,#time2').prop('disabled', false)
                     }
                     else {
-                        $('#list2,#time2').prop('disabled', false)
+                        $('#list2,#time2').prop('disabled', true)
                     }
                 }
 
                 if (this.id == 'illness') {
-                    if (this.value == 'false') {
-                        $('#ill').prop('disabled', true)
+                    if (this.value == 'true') {
+                        $('#ill').prop('disabled', false)
                     }
                     else {
-                        $('#ill').prop('disabled', false)
+                        $('#ill').prop('disabled', true)
                     }
                 }
             })
@@ -114,18 +89,18 @@
                 </label>
                 <select class="form-control" id="acne">
                     <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                    <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
+                    <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="list1">Please List:</label>
-                <input type="text" class="form-control" id="list1" name="acneMedicines">
+                <input type="text" class="form-control" disabled id="list1" name="acneMedicines">
             </div>
             <div class="form-group col-sm-6">
                 <label for="time1">How long / How often?</label>
-                <input type="text" class="form-control" id="time1" name="acnePeriod">
+                <input type="text" disabled class="form-control" id="time1" name="acnePeriod">
             </div>
         </div>
         <div class="form-group">
@@ -135,17 +110,17 @@
             </label>
             <select class="form-control" id="bleaching">
                 <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
+                <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
             </select>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
                 <label for="list2">Please list:</label>
-                <input type="text" class="form-control" id="list2" name="bleachingAgent">
+                <input type="text" disabled class="form-control" id="list2" name="bleachingAgent">
             </div>
             <div class="form-group col-sm-6">
                 <label for="time2">How long / How often?</label>
-                <input type="text" class="form-control" id="time2" name="bleachingAgentPeriod">
+                <input type="text" disabled class="form-control" id="time2" name="bleachingAgentPeriod">
             </div>
         </div>
         <div class="row">
@@ -153,12 +128,12 @@
                 <label for="illness">Any other illness/condition a medical professional is treating you for?</label>
                 <select class="form-control" id="illness">
                     <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                    <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
+                    <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
                 </select>
             </div>
             <div class="form-group col-sm-6">
                 <label for="ill">If any</label>
-                <input type="text" class="form-control" id="ill" name="illness">
+                <input type="text" disabled class="form-control" id="ill" name="illness">
             </div>
         </div>
         <div class="form-group">
@@ -228,10 +203,7 @@
                 complete.</b>
         </div>
         <label>Signature:</label>
-        <div class='js-signature' data-line-color="#FFFFFF"
-             data-line-width="3" data-width="400" data-height="200"
-             data-background="#C0C0C0"
-             data-auto-fit="true"></div>
+        <div class='js-signature'></div>
 
 
         <button class="btn btn-warning btn-sm" id="clear">Clear</button><br/>
