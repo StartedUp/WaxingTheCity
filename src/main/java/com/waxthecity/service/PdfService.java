@@ -160,8 +160,8 @@ public class PdfService {
                         regBean.getImageData().indexOf(",") + 1)
         );
         BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
-        Graphics2D graphics = bufferedImage.createGraphics();
-        graphics.setPaint ( Color.white);
+        /*Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setPaint ( Color.white);*/
         //graphics.fillRect ( 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight() );
         ImageIO.write(bufferedImage, "PNG", imageFile);
     }
