@@ -1,75 +1,98 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
-    <head>
-        <title>WaxingTheCityForm</title>
+    <title>WaxingTheCityForm</title>
+    <meta name="description"
+          content="Signature Pad - HTML5 canvas based smooth signature drawing using variable width spline interpolation.">
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- jQuery library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
-              rel="stylesheet">
-        <link href="css/jquery.signature.css" rel="stylesheet">
-        <style>
-            .kbw-signature {
-                width: 400px;
-                height: 200px;
-            }
-        </style>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-        <script src="js/jquery.signature.js"></script>
-        <script>
-            $(function () {
-                var sig = $('#sig').signature({
-                    syncField: '#imageData',
-                    syncFormat: 'PNG'
-                });
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-                $('#clear').click(function () {
-                    sig.signature('clear');
-                });
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/south-street/jquery-ui.css"
+          rel="stylesheet">
+    <!--
+            <link href="css/jquery.signature.css" rel="stylesheet">
+            <style>
+                .kbw-signature {
+                    width: 400px;
+                    height: 200px;
+                }
+            </style>
+    -->
+    <!--<script src="js/signature_pad.js"></script>
+    <script src="js/app.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+    <!--
+            <script src="js/jquery.signature.js"></script>
+    -->
+
+    <script src="js/jq-signature.min.js"></script>
+
+    <script>
+        /*$(function () {
+         var sig = $('#sig').signature({
+         syncField: '#imageData',
+         syncFormat: 'PNG'
+         });
+
+         $('#clear').click(function () {
+         sig.signature('clear');
+         });
+         });*/
+        $(document).ready(function () {
+            $('.js-signature').jqSignature();
+            $('.js-signature').on('jq.signature.changed', function () {
+                var sigData = $('.js-signature').jqSignature('getDataURL');
+                $('#imageData').val(sigData);
             });
-            $(document).ready(function () {
-                $('select').on('change', function () {
-                    if (this.id == 'acne') {
-                        if (this.value == 'false') {
-                            $('#list1,#time1').prop('disabled', true)
-                        }
-                        else {
-                            $('#list1,#time1').prop('disabled', false)
-                        }
-                    }
-
-                    if (this.id == 'bleaching') {
-                        if (this.value == 'false') {
-                            $('#list2,#time2').prop('disabled', true)
-                        }
-                        else {
-                            $('#list2,#time2').prop('disabled', false)
-                        }
-                    }
-
-                    if (this.id == 'illness') {
-                        if (this.value == 'false') {
-                            $('#ill').prop('disabled', true)
-                        }
-                        else {
-                            $('#ill').prop('disabled', false)
-                        }
-                    }
-                })
+            $('#clear').click(function () {
+                $('.js-signature').jqSignature('clearCanvas');
             })
-        </script>
 
-    </head>
+            $('select').on('change', function () {
+                if (this.id == 'acne') {
+                    if (this.value == 'false') {
+                        $('#list1,#time1').prop('disabled', true)
+                    }
+                    else {
+                        $('#list1,#time1').prop('disabled', false)
+                    }
+                }
+
+                if (this.id == 'bleaching') {
+                    if (this.value == 'false') {
+                        $('#list2,#time2').prop('disabled', true)
+                    }
+                    else {
+                        $('#list2,#time2').prop('disabled', false)
+                    }
+                }
+
+                if (this.id == 'illness') {
+                    if (this.value == 'false') {
+                        $('#ill').prop('disabled', true)
+                    }
+                    else {
+                        $('#ill').prop('disabled', false)
+                    }
+                }
+            })
+        })
+    </script>
+</head>
 <body>
 <div class="container">
     <div class='row'>
@@ -79,18 +102,21 @@
         <div class="col-sm-12" style="height: 100px;"><img src="img/logo1.jpg" height="52" width="182"></div>
     </div>
     <form action="/generate" method="post">
-        <div class="form-group">
-            <label for="name">Client Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-            <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning ACNE
-                MEDICATIONS, orally or topically?
-            </label>
-            <select class="form-control" id="acne">
-                <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-            </select>
+        <div class="row">
+            <div class="form-group">
+                <label for="name">Client Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning
+                    ACNE
+                    MEDICATIONS, orally or topically?
+                </label>
+                <select class="form-control" id="acne">
+                    <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
+                    <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
+                </select>
+            </div>
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
@@ -201,17 +227,14 @@
             <b>I confirm to the best of my knowledge that the information provided in this form by Minor is accuarte and
                 complete.</b>
         </div>
-        <label for="sig">Signature:</label>
-        <div class="row">
-            <div class="form-group">
-                <div id="sig">
+        <label>Signature:</label>
+        <div class='js-signature' data-line-color="#000000"
+             data-line-width="3" data-width="600" data-height="200"
+             data-background="#FFFFFF"
+             data-auto-fit="true"></div>
 
-                </div>
-            </div>
-            <p style="clear: both;">
-                <button type="button" id="clear">Clear</button>
-            </p>
-        </div>
+
+        <button class="btn btn-warning btn-sm" id="clear">Clear</button>
         <div style="display: none">
             <input type="textarea" id="imageData" name="imageData">
         </div>

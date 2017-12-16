@@ -4,8 +4,6 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
-import com.dropbox.core.v2.files.ListFolderResult;
-import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
@@ -21,18 +19,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import javax.validation.Valid;
 import javax.xml.bind.DatatypeConverter;
-import java.awt.image.BufferedImage;
+import java.awt.*;
+import java.awt.image.*;
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
-import static javax.swing.text.html.HTML.Tag.IMG;
 
 /**
  * Created by Balaji on 8/12/17.
@@ -113,19 +107,15 @@ public class PdfService {
             form.setField("No_2",
                     regBean.isPregnant()?"Off":"On");
             LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
-
-
-                    Image image = Image.getInstance("wtcPdf/signImages/" + dateValue + regBean.getName() + ".png");
-                    PdfImage stream = new PdfImage(image, "", null);
-                    stream.put(new PdfName("Sign"), new PdfName(dateValue + regBean.getName() + ".pdf"));
-                    PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
-                    image.setDirectReference(ref.getIndirectReference());
-                    image.setAbsolutePosition(100, 437);
-                    image.scaleAbsolute(200, 20);
-                    PdfContentByte over = stamper.getOverContent(2);
-                    over.addImage(image);
-
-
+            Image image = Image.getInstance(signImagePath + dateValue + regBean.getName() + ".png");
+            PdfImage stream = new PdfImage(image, "", null);
+            stream.put(new PdfName("Sign"), new PdfName(dateValue + regBean.getName() + ".pdf"));
+            PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
+            image.setDirectReference(ref.getIndirectReference());
+            image.setAbsolutePosition(100, 437);
+            image.scaleAbsolute(200, 20);
+            PdfContentByte over = stamper.getOverContent(2);
+            over.addImage(image);
             stamper.setFormFlattening(true);
             stamper.close();
             PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
@@ -170,7 +160,10 @@ public class PdfService {
                         regBean.getImageData().indexOf(",") + 1)
         );
         BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
-        ImageIO.write(bufferedImage, "png", imageFile);
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.setPaint ( Color.white);
+        //graphics.fillRect ( 0, 0, bufferedImage.getWidth(), bufferedImage.getHeight() );
+        ImageIO.write(bufferedImage, "PNG", imageFile);
     }
 
     public File copySourceFile(RegBean regBean) throws IOException {
@@ -192,13 +185,6 @@ public class PdfService {
         return destination;
     }
 
-    public AcroFields fillTextFields(RegBean bean, AcroFields fields) throws IOException, DocumentException {
-        for (String fieldName : fieldNames) {
-            fields.setField(fieldName, bean.getName());
-        }
-        return fields;
-    }
-
     public void putInDropbox(String pdfName) throws DbxException, IOException {
         // Create Dropbox client
         DbxRequestConfig config = new DbxRequestConfig("dropbox/2017", "en_US");
@@ -215,5 +201,6 @@ public class PdfService {
             LOGGER.info(" path of local {} ",("/2017/"+pdfName));
         }
     }
+
 }
 
