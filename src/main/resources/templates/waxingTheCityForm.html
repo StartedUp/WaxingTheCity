@@ -37,7 +37,8 @@
                 $('.js-signature').jqSignature('clearCanvas');
             })
 
-            $('select').on('change', function () {
+           // $('.radio-inline').on('change', function () {
+            function findSelected() {
                 if (this.id == 'acne') {
                     if (this.value == 'true') {
                         $('#list1,#time1').prop('disabled', false)
@@ -64,7 +65,7 @@
                         $('#ill').prop('disabled', true)
                     }
                 }
-            })
+            }
         })
     </script>
 </head>
@@ -83,14 +84,25 @@
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="form-group col-sm-12">
-                <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning
+                <label>Are you currently taking Retin A, Renova, Differin or other types of skin thinning
                     ACNE
                     MEDICATIONS, orally or topically?
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="acne" onchange="findSelected()"/>
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name="acne" onchange="findSelected()"/>
+                        <span>No</span>
+                    </label>
+
+
+
                 </label>
-                <select class="form-control" id="acne">
+                <!--<select class="form-control" id="acne">
                     <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
                     <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>
+                </select>-->
             </div>
         </div>
         <div class="row">
@@ -104,14 +116,22 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="bleaching">Are you currently using any BLEACHING AGENTS for your facial or body hair or
+            <label>Are you currently using any BLEACHING AGENTS for your facial or body hair or
                 bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
                 (Glycolic,Lactic),Salicylic Acids or other exfoliants?
+                <label class="radio-inline">
+                    <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                    <span>Yes</span>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                    <span>No</span>
+                </label>
             </label>
-            <select class="form-control" id="bleaching">
+            <!--<select class="form-control" id="bleaching">
                 <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
                 <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-            </select>
+            </select>-->
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
@@ -125,11 +145,21 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
-                <label for="illness">Any other illness/condition a medical professional is treating you for?</label>
-                <select class="form-control" id="illness">
+                <label for="illness">Any other illness/condition a medical professional is treating you for?
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                        <span>No</span>
+                    </label>
+                </label>
+                <!--<select class="form-control" id="illness">
                     <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
                     <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>
+                </select>-->
+
             </div>
             <div class="form-group col-sm-6">
                 <label for="ill">If any</label>
@@ -138,27 +168,53 @@
         </div>
         <div class="form-group">
             <label for="alergy">Do you have any allergic reactions or allergies to flower/fruit extracts, talcum
-                powder
-                or aspirin?</label>
-            <select class="form-control" id="alergy" name="alergy">
+                powder or aspirin?
+                <label class="radio-inline">
+                    <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                    <span>Yes</span>
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                    <span>No</span>
+                </label>
+            </label>
+            <!--<select class="form-control" id="alergy" name="alergy">
                 <option data-toggle="tooltip" value="Yes" title="Hooray!">YES</option>
                 <option data-toggle="tooltip" value="No" title="Hooray!">NO</option>
-            </select>
+            </select>-->
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
-                <label for="diabetic">Are you diabetic?</label>
-                <select class="form-control" id="diabetic" name='diabetic'>
+                <label for="diabetic">Are you diabetic?
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                        <span>No</span>
+                    </label>
+                </label>
+                <!--<select class="form-control" id="diabetic" name='diabetic'>
                     <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
                     <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>
+                </select>-->
             </div>
             <div class="form-group col-sm-6">
-                <label for="pregnant">Are you / Could you be pregnant?</label>
-                <select class="form-control" id="pregnant" name='pregnant'>
+                <label for="pregnant">Are you / Could you be pregnant?
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                        <span>Yes</span>
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                        <span>No</span>
+                    </label>
+                </label>
+                <!--<select class="form-control" id="pregnant" name='pregnant'>
                     <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
                     <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>
+                </select>-->
             </div>
         </div>
 
