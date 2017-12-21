@@ -118,6 +118,7 @@ public class PdfService {
             over.addImage(image);
             stamper.setFormFlattening(true);
             stamper.close();
+            // getting pdf field names for our reference
             PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
             PDDocumentCatalog pdCatalog = pdDocument.getDocumentCatalog();
             PDAcroForm pdAcroForm = pdCatalog.getAcroForm();
@@ -125,6 +126,7 @@ public class PdfService {
             for (PDField pdField : pdAcroForm.getFields()) {
                 System.out.println(pdField);
             }
+            // to upload into dropbox automatically
             putInDropbox(pdfName);
         } catch (IOException e) {
             e.printStackTrace();
@@ -197,9 +199,9 @@ public class PdfService {
 
         // Upload "test.txt" to Dropbox
         try (InputStream in = new FileInputStream(copyPdfDir+pdfName)) {
-            FileMetadata metadata = client.files().uploadBuilder("/2017/"+pdfName)
+            FileMetadata metadata = client.files().uploadBuilder("/Waxing the City-Victor/Intake Forms/"+pdfName)
                     .uploadAndFinish(in);
-            LOGGER.info(" path of local {} ",("/2017/"+pdfName));
+            LOGGER.info(" path of local {} ",("/Waxing the City-Victor/Intake Forms/"+pdfName));
         }
     }
 

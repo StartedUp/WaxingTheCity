@@ -36,17 +36,6 @@
             $('#clear').click(function () {
                 $('.js-signature').jqSignature('clearCanvas');
             })
-
-
-                /*$('input[type=radio]').change(function() {
-                    if ($(this).is(':checked')) {
-                        $('input[type=text]').attr('disabled', 'enabled');
-                        $(this).next().removeAttr('disabled');
-                    }
-                });
-
-                $('input[type=radio]:first').attr('checked', 'checked').change();*/
-
              $('input[type=radio]').on('change', function () {
                  console.log("this name " + this.name);
                  if (this.name == 'acne') {
@@ -105,7 +94,6 @@
                     <span>Yes</span>
                 </label>
             </div>
-            <!--make those fields disabled based on radio-->
             <div class="form-group col-sm-1">
                 <label class="radio-inline">
                     <input type="radio" checked value="false" name="acne"/>
