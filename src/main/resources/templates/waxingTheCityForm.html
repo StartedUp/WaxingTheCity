@@ -37,45 +37,55 @@
                 $('.js-signature').jqSignature('clearCanvas');
             })
 
-           // $('.radio-inline').on('change', function () {
-            function findSelected() {
-                if (this.id == 'acne') {
-                    if (this.value == 'true') {
-                        $('#list1,#time1').prop('disabled', false)
-                    }
-                    else {
-                        $('#list1,#time1').prop('disabled', true)
-                    }
-                }
 
-                if (this.id == 'bleaching') {
-                    if (this.value == 'true') {
-                        $('#list2,#time2').prop('disabled', false)
+                /*$('input[type=radio]').change(function() {
+                    if ($(this).is(':checked')) {
+                        $('input[type=text]').attr('disabled', 'enabled');
+                        $(this).next().removeAttr('disabled');
                     }
-                    else {
-                        $('#list2,#time2').prop('disabled', true)
-                    }
-                }
+                });
 
-                if (this.id == 'illness') {
-                    if (this.value == 'true') {
-                        $('#ill').prop('disabled', false)
-                    }
-                    else {
-                        $('#ill').prop('disabled', true)
-                    }
-                }
-            }
-        })
+                $('input[type=radio]:first').attr('checked', 'checked').change();*/
+
+             $('input[type=radio]').on('change', function () {
+                 console.log("this name " + this.name);
+                 if (this.name == 'acne') {
+                     if (this.value == 'true') {
+                         $('#list1,#time1').prop('disabled', false)
+                     }
+                     else {
+                         $('#list1,#time1').prop('disabled', true)
+                     }
+                 }
+
+                 if (this.name == 'bleaching') {
+                     if (this.value == 'true') {
+                         $('#list2,#time2').prop('disabled', false)
+                     }
+                     else {
+                         $('#list2,#time2').prop('disabled', true)
+                     }
+                 }
+
+                 if (this.name == 'illRadio') {
+                     if (this.value == 'true') {
+                         $('#ill').prop('disabled', false)
+                     }
+                     else {
+                         $('#ill').prop('disabled', true)
+                     }
+                 }
+             });
+        });
     </script>
 </head>
 <body>
 <div class="container">
-    <div class='row'>
-        <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
-    </div>
     <div class="row" id="header">
         <div class="col-sm-12" style="height: 100px;"><img src="img/logo1.jpg" height="52" width="182"></div>
+    </div>
+    <div class='row'>
+        <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
     </div>
     <form action="/generate" method="post">
         <div class="row">
@@ -83,26 +93,24 @@
                 <label for="name">Client Name:</label>
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
-            <div class="form-group col-sm-12">
-                <label>Are you currently taking Retin A, Renova, Differin or other types of skin thinning
+            <div class="form-group col-sm-10">
+                <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning
                     ACNE
                     MEDICATIONS, orally or topically?
-                    <label class="radio-inline">
-                        <input type="radio" value="true" name="acne" onchange="findSelected()"/>
-                        <span>Yes</span>
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" value="false" name="acne" onchange="findSelected()"/>
-                        <span>No</span>
-                    </label>
-
-
-
                 </label>
-                <!--<select class="form-control" id="acne">
-                    <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                    <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>-->
+            </div>
+            <div class="form-group col-sm-1">
+                <label class="radio-inline">
+                    <input type="radio" value="true" name="acne"/>
+                    <span>Yes</span>
+                </label>
+            </div>
+            <!--make those fields disabled based on radio-->
+            <div class="form-group col-sm-1">
+                <label class="radio-inline">
+                    <input type="radio" checked value="false" name="acne"/>
+                    <span>No</span>
+                </label>
             </div>
         </div>
         <div class="row">
@@ -115,23 +123,26 @@
                 <input type="text" disabled class="form-control" id="time1" name="acnePeriod">
             </div>
         </div>
-        <div class="form-group">
-            <label>Are you currently using any BLEACHING AGENTS for your facial or body hair or
-                bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
-                (Glycolic,Lactic),Salicylic Acids or other exfoliants?
+        <div class="row">
+            <div class="form-group col-sm-10">
+                <label>Are you currently using any BLEACHING AGENTS for your facial or body hair or
+                    bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
+                    (Glycolic,Lactic),Salicylic Acids or other exfoliants?
+                </label>
+            </div>
+            <div class="form-group col-sm-1">
                 <label class="radio-inline">
-                    <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                    <input type="radio" value="true" name="bleaching"/>
                     <span>Yes</span>
                 </label>
+            </div>
+            <div class="form-group col-sm-1">
                 <label class="radio-inline">
-                    <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                    <input type="radio" checked value="false" name="bleaching"/>
                     <span>No</span>
                 </label>
+            </div>
             </label>
-            <!--<select class="form-control" id="bleaching">
-                <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-            </select>-->
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
@@ -145,79 +156,94 @@
         </div>
         <div class="row">
             <div class="form-group col-sm-6">
-                <label for="illness">Any other illness/condition a medical professional is treating you for?
-                    <label class="radio-inline">
-                        <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
-                        <span>Yes</span>
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
-                        <span>No</span>
-                    </label>
+                <label>Any other illness/condition a medical professional is treating you for?
                 </label>
-                <!--<select class="form-control" id="illness">
-                    <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                    <option selected data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>-->
-
             </div>
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-1">
+                <label class="radio-inline">
+                    <input type="radio" value="true" name="illRadio"/>
+                    <span>Yes</span>
+                </label>
+            </div>
+            <div class="form-group col-sm-1">
+                <label class="radio-inline">
+                    <input type="radio" checked value="false" name="illRadio"/>
+                    <span>No</span>
+                </label>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-sm-12">
                 <label for="ill">If any</label>
                 <input type="text" disabled class="form-control" id="ill" name="illness">
             </div>
         </div>
-        <div class="form-group">
-            <label for="alergy">Do you have any allergic reactions or allergies to flower/fruit extracts, talcum
-                powder or aspirin?
+        <div class="row">
+
+            <div class="form-group col-sm-7">
+                <label>Do you have any allergic reactions or allergies to flower/fruit extracts, talcum
+                    powder or aspirin?
+                </label>
+            </div>
+            <div class="form-group col-sm-1">
+
                 <label class="radio-inline">
-                    <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
+                    <input type="radio" value="Yes" name="alergy" required/>
                     <span>Yes</span>
                 </label>
+            </div>
+            <div class="form-group col-sm-1">
+
                 <label class="radio-inline">
-                    <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
+                    <input type="radio" value="No" name="alergy"/>
                     <span>No</span>
                 </label>
-            </label>
-            <!--<select class="form-control" id="alergy" name="alergy">
-                <option data-toggle="tooltip" value="Yes" title="Hooray!">YES</option>
-                <option data-toggle="tooltip" value="No" title="Hooray!">NO</option>
-            </select>-->
+                </label>
+            </div>
         </div>
         <div class="row">
-            <div class="form-group col-sm-6">
-                <label for="diabetic">Are you diabetic?
-                    <label class="radio-inline">
-                        <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
-                        <span>Yes</span>
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
-                        <span>No</span>
-                    </label>
+            <div class="form-group col-sm-4">
+                <label>Are you diabetic?
                 </label>
-                <!--<select class="form-control" id="diabetic" name='diabetic'>
-                    <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                    <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>-->
             </div>
-            <div class="form-group col-sm-6">
-                <label for="pregnant">Are you / Could you be pregnant?
-                    <label class="radio-inline">
-                        <input type="radio" value="true" name="bleaching" onchange="findSelected()"/>
-                        <span>Yes</span>
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" value="false" name="bleaching" onchange="findSelected()"/>
-                        <span>No</span>
-                    </label>
+            <div class="form-group col-sm-1">
+                <label class="radio-inline">
+                    <input type="radio" value="true" name="diabetic" required/>
+                    <span>Yes</span>
                 </label>
-                <!--<select class="form-control" id="pregnant" name='pregnant'>
-                    <option data-toggle="tooltip" value="true" title="Hooray!">YES</option>
-                    <option data-toggle="tooltip" value="false" title="Hooray!">NO</option>
-                </select>-->
+            </div>
+            <div class="form-group col-sm-1">
+                <label class="radio-inline">
+                    <input type="radio" value="false" name="diabetic"/>
+                    <span>No</span>
+                </label>
+                </label>
             </div>
         </div>
+        <div class="row">
 
+            <div class="form-group col-sm-4">
+                <label>Are you / Could you be pregnant?
+                </label>
+            </div>
+            <div class="form-group col-sm-1">
+
+                <label class="radio-inline">
+                    <input type="radio" value="true" name="pregnant" required/>
+                    <span>Yes</span>
+                </label>
+            </div>
+            <div class="form-group col-sm-1">
+
+                <label class="radio-inline">
+                    <input type="radio" value="false" name="pregnant"/>
+                    <span>No</span>
+                </label>
+                </label>
+            </div>
+        </div>
         <div class="alert alert-info">
             <h3>CONSENT</h3>
             I hereby request and grant permission to Waxing the City to administer waxing services and I voluntarily
@@ -265,7 +291,8 @@
              data-auto-fit="true"></div>
 
 
-        <button class="btn btn-warning btn-sm" id="clear">Clear</button><br/>
+        <button class="btn btn-warning btn-sm" id="clear">Clear</button>
+        <br/>
         <div style="display: none">
             <input type="textarea" id="imageData" name="imageData">
         </div>
