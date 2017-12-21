@@ -4,6 +4,8 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.FileMetadata;
+import com.dropbox.core.v2.files.ListFolderResult;
+import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
@@ -202,6 +204,19 @@ public class PdfService {
             FileMetadata metadata = client.files().uploadBuilder("/Waxing the City-Victor/Intake Forms/"+pdfName)
                     .uploadAndFinish(in);
             LOGGER.info(" path of local {} ",("/Waxing the City-Victor/Intake Forms/"+pdfName));
+        }
+        // List of files in the dropbox...
+        ListFolderResult result = client.files().listFolder("/Waxing the City-Victor/Intake Forms/");
+        while (true) {
+            for (Metadata metadata : result.getEntries()) {
+                LOGGER.info("PathLower {} ",metadata.getPathLower());
+            }
+
+            if (!result.getHasMore()) {
+                break;
+            }
+
+            result = client.files().listFolderContinue(result.getCursor());
         }
     }
 
