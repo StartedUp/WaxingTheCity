@@ -192,7 +192,7 @@ public class PdfService {
 
     public void putInDropbox(String pdfName) throws DbxException, IOException {
         // Create Dropbox client
-        DbxRequestConfig config = new DbxRequestConfig("dropbox/Waxing the City-Victor/Intake Forms", "en_US");
+        DbxRequestConfig config = new DbxRequestConfig("dropbox/Waxing the City-Victo/Intake Forms", "en_US");
         DbxClientV2 client = new DbxClientV2(config, ACCESS_TOKEN);
 
         // Get current account info
