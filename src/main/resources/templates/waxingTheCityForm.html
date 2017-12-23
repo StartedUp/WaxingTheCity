@@ -36,37 +36,42 @@
             $('#clear').click(function () {
                 $('.js-signature').jqSignature('clearCanvas');
             })
-             $('input[type=radio]').on('change', function () {
-                 console.log("this name " + this.name);
-                 if (this.name == 'acne') {
-                     if (this.value == 'true') {
-                         $('#list1,#time1').prop('disabled', false)
-                     }
-                     else {
-                         $('#list1,#time1').prop('disabled', true)
-                     }
-                 }
+            $('input[type=radio]').on('change', function () {
+                console.log("this name " + this.name);
+                if (this.name == 'acne') {
+                    if (this.value == 'true') {
+                        $('#list1,#time1').prop('disabled', false)
+                    }
+                    else {
+                        $('#list1,#time1').prop('disabled', true)
+                    }
+                }
 
-                 if (this.name == 'bleaching') {
-                     if (this.value == 'true') {
-                         $('#list2,#time2').prop('disabled', false)
-                     }
-                     else {
-                         $('#list2,#time2').prop('disabled', true)
-                     }
-                 }
+                if (this.name == 'bleaching') {
+                    if (this.value == 'true') {
+                        $('#list2,#time2').prop('disabled', false)
+                    }
+                    else {
+                        $('#list2,#time2').prop('disabled', true)
+                    }
+                }
 
-                 if (this.name == 'illRadio') {
-                     if (this.value == 'true') {
-                         $('#ill').prop('disabled', false)
-                     }
-                     else {
-                         $('#ill').prop('disabled', true)
-                     }
-                 }
-             });
+                if (this.name == 'illRadio') {
+                    if (this.value == 'true') {
+                        $('#ill').prop('disabled', false)
+                    }
+                    else {
+                        $('#ill').prop('disabled', true)
+                    }
+                }
+            });
         });
     </script>
+    <style>
+        p {
+            background-color: #d9edf7;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -287,10 +292,17 @@
         <br/>
         <br/>
         <div class="text-center">
-            <input type="submit" value="submit" class=" btn btn-info btn-lg" />
+            <input type="submit" value="submit" class=" btn btn-info btn-lg"/>
         </div>
     </form>
-    <br/><br/><br/>
+    <br/><br/>
+    <footer id="main-footer">
+        <div id="footer-bottom">
+            <div class=" container maincolor dark col-sm-12 text-center">
+                <p id="footer-info">Designed & Powered by <span style="color: #ee7421">Rebutton</span></p>
+            </div>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
