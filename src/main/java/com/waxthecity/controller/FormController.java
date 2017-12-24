@@ -44,6 +44,6 @@ public class FormController {
         pdfService.generatePdf(regBean);
         model.addAttribute("form", regBean)
                 .addAttribute("date",dateValue);
-        return "redirect";
+        return "redirect://wtcforms.jvmhost.net/wtcPdf/generated/"+dateValue+regBean.getName()+".pdf";
     }
 }
