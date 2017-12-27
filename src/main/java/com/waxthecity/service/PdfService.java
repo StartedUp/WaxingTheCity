@@ -26,9 +26,14 @@ import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import java.nio.channels.FileChannel;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by Balaji on 8/12/17.
@@ -49,22 +54,39 @@ public class PdfService {
 
     public void generatePdf(RegBean regBean) {
         LOGGER.info("generating pdf. Source pdf {}", srcPdfDir);
+        PdfStamper stamper = null;
+        PdfReader reader = null;
+        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        String systemDate =new Date().toString(); //IST Time
+        LOGGER.info("IST time {} ",systemDate);
+        Date date = null;
         try {
-            createSignature(regBean);
+            date = dateTimeFormat.parse(systemDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        dateFormat.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
+        String dateValue = dateFormat.format(date);
+        LOGGER.info("EST date {} ",dateValue);
+
+        //For logger information
+        DateFormat da=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        da.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
+        LOGGER.info("EST time {} ",da.format(date));
+
+
+        try {
+            createSignature(regBean, dateValue);
         } catch (Exception e) {
             LOGGER.warn("Error creating image -->", e);
         }
-        // TODO: 8/12/17 copy source pdf to dest
-        // TODO: 8/12/17 read the copied pdf
-        // TODO: 8/12/17 edit the copied pdf and save
-        PdfStamper stamper = null;
-        PdfReader reader = null;
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-        String dateValue = sdf.format(new Date());
+
+
         String pdfName=dateValue + regBean.getName() + ".pdf";
 
         try {
-            File file = copySourceFile(regBean);
+            File file = copySourceFile(regBean, dateValue);
             reader = new PdfReader(srcPdfDir);
             stamper = new PdfStamper(reader, new FileOutputStream(copyPdfDir + pdfName));
             AcroFields form = stamper.getAcroFields();
@@ -151,9 +173,7 @@ public class PdfService {
 
     }
 
-    private void createSignature(RegBean regBean) throws Exception{
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-        String dateValue = sdf.format(new Date());
+    private void createSignature(RegBean regBean, String dateValue) throws Exception{
         File imageFile = new File(
                 signImagePath+dateValue+regBean.getName()+".png");
         if (!imageFile.exists()) {
@@ -171,19 +191,16 @@ public class PdfService {
 
     }
 
-    public File copySourceFile(RegBean regBean) throws IOException {
+    public File copySourceFile(RegBean regBean, String dateValue) throws IOException {
         File source = new File(srcPdfDir);
         if (!source.exists()) {
             source.getParentFile().mkdir();
         }
-        Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy");
-        String dateString = sdf.format(date);
         File file = new File(copyPdfDir);
         if (!file.isDirectory())
             file.mkdir();
 
-        File destination = new File(copyPdfDir + dateString + regBean.getName() + ".pdf");
+        File destination = new File(copyPdfDir + dateValue + regBean.getName() + ".pdf");
         FileChannel src = new FileInputStream(source).getChannel();
         FileChannel dest = new FileOutputStream(destination).getChannel();
         dest.transferFrom(src, 0, src.size());
