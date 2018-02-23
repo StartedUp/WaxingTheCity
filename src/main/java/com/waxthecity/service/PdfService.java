@@ -127,9 +127,48 @@ public class PdfService {
             form.setField("Are you diabetic Yes", regBean.isDiabetic()?"On":"Off");
             form.setField("No", regBean.isDiabetic()?"Off":"On");
             form.setField("re youcould you be pregnant Yes",
-                    regBean.isPregnant()?"On":"Off");
+                    regBean.isPregnant() ?"On":"Off");
             form.setField("No_2",
                     regBean.isPregnant()?"Off":"On");
+
+            form.setField("Brow Shaping", regBean.isBrowShaping() ?"On":"Off");
+            form.setField("Nose", regBean.isNose() ?"On":"Off");
+            form.setField("Full Leg", regBean.isFullLeg() ?"On":"Off");
+            form.setField("Bikini", regBean.isBikini() ?"On":"Off");
+            form.setField("Full Back", regBean.isFullBack() ?"On":"Off");
+            form.setField("Basic Brazilian men", regBean.isBasicBrazilianMen() ?"On":"Off");
+            form.setField("Brow Shaping  Lip", regBean.isBrowShapingLip() ?"On":"Off");
+
+            form.setField("Mens Masculine Tailoring", regBean.isMenMasculineTailoring() ?"On":"Off");
+
+            form.setField("Lip", regBean.isLip()  ?"On":"Off");
+            form.setField("Ears", regBean.isEars() ?"On":"Off");
+            form.setField("Half Leg", regBean.isHalfLeg()  ?"On":"Off");
+            form.setField("Modified Bikini", regBean.isModifiedBikini() ?"On":"Off");
+            form.setField("Half Back", regBean.isHalfBack() ?"On":"Off");
+            form.setField("Modified Brazilian men", regBean.isModifiedBrazilianMen() ?"On":"Off");
+            form.setField("Full Leg  Bikini", regBean.isFullLegBikini() ?"On":"Off");
+            form.setField("Mens Maintenance Brow", regBean.isMenMaintenanceBrow() ?"On":"Off");
+            form.setField("Chin", regBean.isChin() ?"On":"Off");
+            form.setField("Lash Tint", regBean.isLashTint() ?"On":"Off");
+            form.setField("Full Arm", regBean.isFullArm() ?"On":"Off");
+            form.setField("Brazilian Bikini", regBean.isBrazilianBikini() ?"On":"Off");
+            form.setField("Chest", regBean.isChest() ?"On":"Off");
+            form.setField("Full Brazilian men", regBean.isFullBrazilianMen() ?"On":"Off");
+            form.setField("Lash Brow  Tint", regBean.isLashBrowTint() ?"On":"Off");
+            form.setField("Mens Facial Grooming Combo", regBean.isMenFacialGroomingCombo() ?"On":"Off");
+            form.setField("Sideburns", regBean.isSideburns() ?"On":"Off");
+            form.setField("Brow Tint", regBean.isBrowTint() ?"On":"Off");
+            form.setField("Half Arm", regBean.isHalfArm() ?"On":"Off");
+            form.setField("Buttocks", regBean.isButtocks() ?"On":"Off");
+            form.setField("Abdomen", regBean.isAbdomen() ?"On":"Off");
+            form.setField("Other", regBean.isOther() ?"On":"Off");
+            form.setField("Full Face no brows", regBean.isFullFace() ?"On":"Off");
+            form.setField("Tween Brow Shaping", regBean.isTweenBrowShaping() ?"On":"Off");
+            form.setField("Under Arm", regBean.isUnderArm() ?"On":"Off");
+            form.setField("Inner Backside", regBean.isInnerBackSide() ?"On":"Off");
+            form.setField("Neck", regBean.isNeck() ?"On":"Off");
+
             LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
             Image image = Image.getInstance(signImagePath + dateValue + regBean.getName() + ".png");
             PdfImage stream = new PdfImage(image, "", null);
@@ -146,6 +185,9 @@ public class PdfService {
             PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
             PDDocumentCatalog pdCatalog = pdDocument.getDocumentCatalog();
             PDAcroForm pdAcroForm = pdCatalog.getAcroForm();
+            LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
+            LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
+            LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
             LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
             for (PDField pdField : pdAcroForm.getFields()) {
                 System.out.println(pdField);
