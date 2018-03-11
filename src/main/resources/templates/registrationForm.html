@@ -91,388 +91,833 @@
     </div>
     <form id="waxingForm" action="/generate" method="post">
         <div class="row">
-            <div class="form-group col-sm-12">
-                <label for="name">Client Name:</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="name">First Name:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="name">Last Name:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
             </div>
-            <div class="form-group col-sm-10">
-                <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning
-                    ACNE
-                    MEDICATIONS, orally or topically?
-                </label>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="name">Email:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="name">Mobile Phone:</label>
+                    <input type="number" class="form-control" id="" name="" required>
+                </div>
             </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" value="true" name="acne"/>
-                    <span>Yes</span>
-                </label>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="name">Preferred Contact (email, phone, SMS):</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="name">Mobile Phone Service Provider:</label>
+                    <input type="number" class="form-control" id="" name="" required>
+                </div>
             </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" checked value="false" name="acne"/>
-                    <span>No</span>
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-6">
-                <label for="list1">Please List:</label>
-                <input type="text" class="form-control" disabled id="list1" name="acneMedicines">
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="time1">How long / How often?</label>
-                <input type="text" disabled class="form-control" id="time1" name="acnePeriod">
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-10">
-                <label>Are you currently using any BLEACHING AGENTS for your facial or body hair or
-                    bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
-                    (Glycolic,Lactic),Salicylic Acids or other exfoliants?
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" value="true" name="bleaching"/>
-                    <span>Yes</span>
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" checked value="false" name="bleaching"/>
-                    <span>No</span>
-                </label>
-            </div>
-            </label>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-6">
-                <label for="list2">Please list:</label>
-                <input type="text" disabled class="form-control" id="list2" name="bleachingAgent">
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="time2">How long / How often?</label>
-                <input type="text" disabled class="form-control" id="time2" name="bleachingAgentPeriod">
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-6">
-                <label>Any other illness/condition a medical professional is treating you for?
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" value="true" name="illRadio"/>
-                    <span>Yes</span>
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" checked value="false" name="illRadio"/>
-                    <span>No</span>
-                </label>
-                </label>
-            </div>
-        </div>
-        <div class="row">
 
-            <div class="form-group col-sm-12">
-                <label for="ill">If any</label>
-                <input type="text" disabled class="form-control" id="ill" name="illness">
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>OK to receive emails?</label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="" required/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name=""/>
+                        <span>No</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-4">
+                    <label>OK to receive SMS?</label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="" required/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name=""/>
+                        <span>No</span>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="row">
 
-            <div class="form-group col-sm-7">
-                <label>Do you have any allergic reactions or allergies to flower/fruit extracts, talcum
-                    powder or aspirin?
-                </label>
+            <div class="row">
+                <div class="form-group col-sm-4">
+                    <label>Gender:</label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="" required/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="false" name=""/>
+                        <span>No</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-2">
+                    <label>Date of birth:</label>
+                </div>
+                <div class="form-group col-sm-4">
+                    <input type="date" class="form-control" id="" name="" required>
+                </div>
             </div>
-            <div class="form-group col-sm-1">
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="name">Address:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="name">City:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="name">State:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="name">Zip:</label>
+                    <input type="text" class="form-control" id="" name="" required>
+                </div>
+            </div>
 
-                <label class="radio-inline">
-                    <input type="radio" value="Yes" name="alergy" required/>
-                    <span>Yes</span>
-                </label>
+            <h3>HOW DID YOU HEAR ABOUT US?</h3>
+            <div class="row col-sm-12">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6"><label class="checkbox-inline">
+                            <input type="checkbox" name="" value="true">Walk-in/Drive-by
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="" value="true">Internet/Website
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label class="checkbox-inline">
+                            <input type="checkbox" name="" value="true">Radio
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="" value="true">Direct Mail
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label class="checkbox-inline">
+                            <input type="checkbox" name="" value="true">Coupon
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="" value="true">Flyer
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label class="checkbox-inline">
+                            <input type="checkbox" name="" value="true">Return Customer
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="" value="true">Print Ad
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6"><label class="checkbox-inline">
+                            <input type="checkbox" name="" value="true">Referral/Word of Mouth
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="" value="true">Other
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-12">
+                            <label for="name">Which Magazine/paper?</label>
+                            <input type="text" class="form-control" id="" name="" required>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <label for="name">Who can we thank?</label>
+                            <input type="text" class="form-control" id="" name="" required>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group col-sm-1">
+            <h3>Do you have, or are you prone to:</h3>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label>Ingrown Hairs
+                            </label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name=""/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label>Scarring
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
 
-                <label class="radio-inline">
-                    <input type="radio" value="No" name="alergy"/>
-                    <span>No</span>
-                </label>
-                </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name=""/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-sm-4">
-                <label>Are you diabetic?
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" value="true" name="diabetic" required/>
-                    <span>Yes</span>
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
-                <label class="radio-inline">
-                    <input type="radio" value="false" name="diabetic"/>
-                    <span>No</span>
-                </label>
-                </label>
-            </div>
-        </div>
-        <div class="row">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label>Bumps
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
 
-            <div class="form-group col-sm-4">
-                <label>Are you / Could you be pregnant?
-                </label>
-            </div>
-            <div class="form-group col-sm-1">
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name=""/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label>Hyperpigmentation
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
 
-                <label class="radio-inline">
-                    <input type="radio" value="true" name="pregnant" required/>
-                    <span>Yes</span>
-                </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name=""/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group col-sm-1">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label>Bruising
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
 
-                <label class="radio-inline">
-                    <input type="radio" value="false" name="pregnant"/>
-                    <span>No</span>
-                </label>
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name=""/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-4">
+                            <label>Are you diabetic?
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="diabetic" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name="diabetic"/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-8">
+                            <label>Are you / Could you be pregnant?
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="pregnant" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name="pregnant"/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="form-group col-sm-8">
+                            <label>Allergies
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+
+                            <label class="radio-inline">
+                                <input type="radio" value="true" name="" required/>
+                                <span>Yes</span>
+                            </label>
+                        </div>
+                        <div class="form-group col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" value="false" name=""/>
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label for="ill">If any</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <input type="text" disabled class="form-control" id="" name="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3>Use of Medicines or Agents That Impact the Skin:</h3>
+            <div class="row">
+                <div class="form-group col-sm-10">
+                    <label for="acne">Are you currently taking Retin A, Renova, Differin or other types of skin thinning
+                        ACNE
+                        MEDICATIONS, orally or topically?
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="acne"/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" checked value="false" name="acne"/>
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="list1">Please List:</label>
+                    <input type="text" class="form-control" disabled id="list1" name="acneMedicines">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="time1">How long / How often?</label>
+                    <input type="text" disabled class="form-control" id="time1" name="acnePeriod">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-10">
+                    <label>Are you currently using any BLEACHING AGENTS for your facial or body hair or
+                        bleaching agents for pigmentation (Hydroquinone,Trilumena),Alpha Hydroxy Acids
+                        (Glycolic,Lactic),Salicylic Acids or other exfoliants?
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="bleaching"/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" checked value="false" name="bleaching"/>
+                        <span>No</span>
+                    </label>
+                </div>
                 </label>
             </div>
-        </div>
-        <div class="alert alert-info">
-            <h3>CONSENT</h3>
-            I hereby request and grant permission to Waxing the City to administer waxing services and I voluntarily
-            agree
-            to be treated by a licensed esthetician.I confirm to the best of my knowledge that the information I have
-            provided
-            is accurate and complete, and I have received general information about the service I am seeking.I have not
-            withheld
-            information that may be relevant to the services or the results thereof. I am aware that there are often
-            inherent
-            risks associated with waxing and tinting procedures, and the services I am about to receive could have
-            unfavorable
-            and uncomfortable results,including but not limited to:allergic reaction, irritation, burning,
-            redness,scarring,soreness, etc.
-            By signing below, I freely assume these risks and I agree that I will not hold the Waxing the City salon or
-            its owners or
-            any of its employees responsible should there be any unfavorable outcome or result.I will inform Waxing the
-            City of any complications
-            or concerns I may have as soon as they occur, and any changes to the information in this form. I understand
-            I should
-            refrain from tanning and/or direct sun exposure within 24-48 hours of waxing. I also understand that I
-            should not have Micro-dermabrasion
-            or "peels" 3 days pre- or post-waxing.I have read,understand, and agree to the above provsions.
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label for="list2">Please list:</label>
+                    <input type="text" disabled class="form-control" id="list2" name="bleachingAgent">
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="time2">How long / How often?</label>
+                    <input type="text" disabled class="form-control" id="time2" name="bleachingAgentPeriod">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6">
+                    <label>Any other illness/condition a medical professional is treating you for?
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="true" name="illRadio"/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" checked value="false" name="illRadio"/>
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="ill">If any</label>
+                    <input type="text" disabled class="form-control" id="ill" name="illness">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-7">
+                    <label>Do you have any allergic reactions or allergies to flower/fruit extracts, talcum
+                        powder or aspirin?
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="Yes" name="alergy" required/>
+                        <span>Yes</span>
+                    </label>
+                </div>
+                <div class="form-group col-sm-1">
+                    <label class="radio-inline">
+                        <input type="radio" value="No" name="alergy"/>
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label for="ill">Other allergies, please list : </label>
+                    <input type="text" disabled class="form-control" id="" name="">
+                </div>
+            </div>
+            <div>
+                <h3>PRECAUTIONS AND CONSIDERATION: READ AND INTIAL</h3>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">Sunburned, irritated or areas with open skin cannot be waxed
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">Waxing cannot be performed if you have been in a tanning booth the same day
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">If you have a history of Herpes Simplex, waxing can cause an outbreak
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">Waxing cannot be performed if you have had laser skin resurfacing within the past year
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">Waxing cannot be administered if you had a physician administered peel within the past two years
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">No sun/tanning booths for 2 days following a waxing treatment. Extra precaution should be taken if using
+                    tanning accelerators
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">Wait 2-3 days to wax before/after tanning with accelerators
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">No hot tubs or baths for 24 hours following a body waxing treatment
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">No abrasives for 24 hours following a waxing treatment
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">No deodorants for 24 hours following an underarm waxing treatment
+                </label>
+            </div>
+            <div>
+                <label class="checkbox-inline">
+                    <input type="checkbox" name="" value="true">Women may experience extra sensitivity to waxing up to a week prior to the beginning of their menses
+                </label>
+            </div>
             <br/>
-        </div>
-        <div class="alert alert-info">
-            <h3>Parent or Guardian Consent (Must be completed for clients Under the Age of 18):</h3>
-            I authorize Waxing the City estheticians to perform waxing treatments and other services on("Minor"). This
-            authorization is ongoing until written notification from me that
-            the authorization is revoked or modified.This authorization includes all services offered by
-            Waxing the City,except as follows:
+            <div class="alert alert-info">
+                <h3>CONSENT</h3>
+                I hereby request and grant permission to Waxing the City to administer waxing services and I voluntarily
+                agree
+                to be treated by a licensed esthetician.I confirm to the best of my knowledge that the information I
+                have
+                provided
+                is accurate and complete, and I have received general information about the service I am seeking.I have
+                not
+                withheld
+                information that may be relevant to the services or the results thereof. I am aware that there are often
+                inherent
+                risks associated with waxing and tinting procedures, and the services I am about to receive could have
+                unfavorable
+                and uncomfortable results,including but not limited to:allergic reaction, irritation, burning,
+                redness,scarring,soreness, etc.
+                By signing below, I freely assume these risks and I agree that I will not hold the Waxing the City salon
+                or
+                its owners or
+                any of its employees responsible should there be any unfavorable outcome or result.I will inform Waxing
+                the
+                City of any complications
+                or concerns I may have as soon as they occur, and any changes to the information in this form. I
+                understand
+                I should
+                refrain from tanning and/or direct sun exposure within 24-48 hours of waxing. I also understand that I
+                should not have Micro-dermabrasion
+                or "peels" 3 days pre- or post-waxing.I have read,understand, and agree to the above provsions.
+                <br/>
+            </div>
+            <div class="alert alert-info">
+                <h3>Parent or Guardian Consent (Must be completed for clients Under the Age of 18):</h3>
+                I authorize Waxing the City estheticians to perform waxing treatments and other services on("Minor").
+                This
+                authorization is ongoing until written notification from me that
+                the authorization is revoked or modified.This authorization includes all services offered by
+                Waxing the City,except as follows:
+                <br/>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="limitations" name="limitation">
+                    [note any limitations on consent].
+                </div>
+                <br/>
+                <b>I confirm to the best of my knowledge that the information provided in this form by Minor is accuarte
+                    and
+                    complete.</b>
+            </div>
+            <label>Signature:</label>
+            <div class='js-signature' data-line-color="#000000"
+                 data-line-width="3" data-width="600" data-height="200"
+                 data-background="#FFFFFF"
+                 data-auto-fit="true"></div>
             <br/>
-            <div class="form-group">
-                <input type="text" class="form-control" id="limitations" name="limitation">
-                [note any limitations on consent].
+            <div style="display: none">
+                <input type="textarea" id="imageData" name="imageData">
+            </div>
+            <input id="signatureClear" type="button" class="btn btn-warning btn-sm" value="Clear"/>
+            <br/>
+            <br/>
+            <h3><strong>CHECK OFF THE SERVICES YOU ARE HAVING TODAY</strong></h3><br/>
+            <div class="row">
+                <div class="col-sm-3 text-center">
+                    <b>FACIAL WAXING/TINTS</b>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <b>BODY WAXING</b>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <b>COMBINATIONS</b>
+                </div>
             </div>
             <br/>
-            <b>I confirm to the best of my knowledge that the information provided in this form by Minor is accuarte and
-                complete.</b>
-        </div>
-        <label>Signature:</label>
-        <div class='js-signature' data-line-color="#000000"
-             data-line-width="3" data-width="600" data-height="200"
-             data-background="#FFFFFF"
-             data-auto-fit="true"></div>
-        <br/>
-        <div style="display: none">
-            <input type="textarea" id="imageData" name="imageData">
-        </div>
-        <input id="signatureClear" type="button" class="btn btn-warning btn-sm" value="Clear"/>
-        <br/>
-        <br/>
-        <div class="row">
-            <div class="col-sm-3 text-center">
-                FACIAL WAXING/TINTS
-            </div>
-            <div class="col-sm-6 text-center">
-                BODY WAXING
-            </div>
-            <div class="col-sm-3 text-center">
-                COMBINATIONS
-            </div>
-        </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-6"><label class="checkbox-inline">
+                            <input type="checkbox" name="browShaping" value="true">Brow Shaping
+                        </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="nose" value="true">Nose
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="lip" value="true">Lip
+                            </label>
 
-        <div class="row">
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="browShaping" value="true">Brow Shaping
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="nose" value="true">Nose
-                </label>
-            </div>
-            <div class="col-sm-6">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="fullLeg" value="true">Full Leg
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="bikini" value="true">Bikini
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="fullBack" value="true">Full Back
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="basicBrazilianMen" value="true">Basic Brazilian (men)
-                </label>
-            </div>
-            <div class="col-sm-3">
-                COMBINATIONS
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="ears" value="true">Ears
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="chin" value="true">Chin
+                            </label>
 
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="lashTint" value="true">Lash Tint
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="sideburns" value="true">Sideburns
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="browTint" value="true">Brow Tint
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="fullLeg" value="true">Full Leg
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="bikini" value="true">Bikini
+                            </label>
+                        </div>
+                        <div class="col-sm-3"><label class="checkbox-inline">
+                            <input type="checkbox" name="fullBack" value="true">Full Back
+                        </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="basicBrazilianMen" value="true">Basic Brazilian (men)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="halfLeg" value="true">Half Leg
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="modifiedBikini" value="true">Modified Bikini
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="halfBack" value="true">Half Back
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="modifiedBrazilianMen" value="true">Modified Brazilian (men)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="fullArm" value="true">Full Arm
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="brazilianBikini" value="true">Brazilian Bikini
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="chest" value="true">Chest
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="fullBrazilianMen" value="true">Full Brazilian (men)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="halfArm" value="true">Half Arm
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="buttocks" value="true">Buttocks
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="abdomen" value="true">Abdomen
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="underArm" value="true">Under Arm
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="innerBackSide" value="true">Inner Backside
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="neck" value="true">Neck
+                            </label>
+                        </div>
+                        <div class="col-sm-3">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="browShapingLip" value="true">Brow Shaping & Lip
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="MenMasculineTailoring" value="true">Men's Masculine
+                                Tailoring
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="fullLegBikini" value="true">Full Leg & Bikini
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="menMaintenanceBrow" value="true">Men's Maintenance Brow
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="lashBrowTint" value="true">Lash Brow & Tint
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="MenFacialGroomingCombo" value="true">Men's Facial Grooming
+                                Combo
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="fullFace" value="true">Full Face (no brows)
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="tweenBrowShaping" value="true">Tween Brow Shaping
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-3">
-
+            <div class="text-center">
+                <input type="submit" value="submit" class=" btn btn-info btn-lg"/>
             </div>
-            <div class="col-sm-3">
-
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="browShapingLip" value="true">Brow Shaping & Lip
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="MenMasculineTailoring" value="true">Men's Masculine Tailoring
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="lip" value="true">Lip
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="ears" value="true">Ears
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="halfLeg" value="true">Half Leg
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="modifiedBikini" value="true">Modified Bikini
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="halfBack" value="true">Half Back
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="modifiedBrazilianMen" value="true">Modified Brazilian (men)
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="fullLegBikini" value="true">Full Leg & Bikini
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="menMaintenanceBrow" value="true">Men's Maintenance Brow
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="chin" value="true">Chin
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="lashTint" value="true">Lash Tint
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="fullArm" value="true">Full Arm
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="brazilianBikini" value="true">Brazilian Bikini
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="chest" value="true">Chest
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="fullBrazilianMen" value="true">Full Brazilian (men)
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="lashBrowTint" value="true">Lash Brow & Tint
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="MenFacialGroomingCombo" value="true">Men's Facial Grooming Combo
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="sideburns" value="true">Sideburns
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="browTint" value="true">Brow Tint
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="halfArm" value="true">Half Arm
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="buttocks" value="true">Buttocks
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="abdomen" value="true">Abdomen
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="other" value="true">Other
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="fullFace" value="true">Full Face (no brows)
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="tweenBrowShaping" value="true">Tween Brow Shaping
-                </label>
-            </div>
-            <div class="col-sm-offset-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="underArm" value="true">Under Arm
-                </label>
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="innerBackSide" value="true">Inner Backside
-                </label>
-            </div>
-            <div class="col-sm-3">
-                <label class="checkbox-inline">
-                    <input type="checkbox" name="neck" value="true">Neck
-                </label>
-            </div>
-        </div>
-        <div class="text-center">
-            <input type="submit" value="submit" class=" btn btn-info btn-lg"/>
-        </div>
     </form>
     <br/><br/>
     <footer id="main-footer">
         <div id="footer-bottom">
             <div class=" container maincolor dark col-sm-12 text-center">
-                <p id="footer-info">Designed & Powered by <span style="color: #ee7421"></span></p>
+                <p id="footer-info">Designed & Powered by <span style="color: #ee7421">Clark Empire</span></p>
             </div>
         </div>
     </footer>

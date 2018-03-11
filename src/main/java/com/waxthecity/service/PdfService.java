@@ -96,9 +96,9 @@ public class PdfService {
             String list2 = "Please list_2";
             String time2 = "How longhow often_2";
             String illness = "Any other illnesscondition a medical professional is treating you for";
-            String alergy = "Do you have any allergic reactions or allergies to flowerfruit extracts talcum powder or aspirin";
+            String alergy = "No";
             String limitation = "Note any limitations on";
-            String creDate = "Date.0";
+            String creDate = "Date";
             // String field=form.getField(fieldName);
             form.setGenerateAppearances(true);
             LOGGER.info("List {}", fieldNames);
@@ -128,7 +128,7 @@ public class PdfService {
             form.setField("No", regBean.isDiabetic()?"Off":"On");
             form.setField("re youcould you be pregnant Yes",
                     regBean.isPregnant() ?"On":"Off");
-            form.setField("No_2",
+            form.setField("No_3",
                     regBean.isPregnant()?"Off":"On");
 
             form.setField("Brow Shaping", regBean.isBrowShaping() ?"On":"Off");
