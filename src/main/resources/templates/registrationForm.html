@@ -72,6 +72,24 @@
                         $('#ill').prop('disabled', true)
                     }
                 }
+
+                if (this.name == 'allergy') {
+                    if (this.value == 'true') {
+                        $('#specificAllergy').prop('disabled', false)
+                    }
+                    else {
+                        $('#specificAllergy').prop('disabled', true)
+                    }
+                }
+
+                if (this.name == 'aspirin') {
+                    if (this.value === 'Yes') {
+                        $('#otherAllergy').prop('disabled', false)
+                    }
+                    else {
+                        $('#otherAllergy').prop('disabled', true)
+                    }
+                }
             });
         });
     </script>
@@ -82,6 +100,15 @@
     </style>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/">New Client</a></li>
+            <li><a href="/register">Registered Client</a></li>
+            <li><a href="/cancel">Policy cancel</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container">
     <div class="row" id="header">
         <div class="col-sm-12" style="height: 100px;"><img src="img/logo1.jpg" height="52" width="182"></div>
@@ -89,7 +116,7 @@
     <div class='row'>
         <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
     </div>
-    <form id="waxingForm" action="/register" method="post">
+    <form id="waxingForm" action="/save" method="post">
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">First Name:</label>
@@ -443,13 +470,13 @@
                         <div class="form-group col-sm-2">
 
                             <label class="radio-inline">
-                                <input type="radio" value="true" name="" required/>
+                                <input type="radio" value="true" name="allergy" required/>
                                 <span>Yes</span>
                             </label>
                         </div>
                         <div class="form-group col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="false" name=""/>
+                                <input type="radio" value="false" name="allergy"/>
                                 <span>No</span>
                             </label>
                         </div>
@@ -461,7 +488,7 @@
                             <label for="ill">If any</label>
                         </div>
                         <div class="col-sm-10">
-                            <input type="text" disabled class="form-control" id="" name="">
+                            <input type="text" disabled class="form-control" id="specificAllergy" name="specificAllergy">
                         </div>
                     </div>
                 </div>
@@ -560,13 +587,13 @@
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="Yes" name="alergy" required/>
+                        <input type="radio" value="Yes" name="aspirin" required/>
                         <span>Yes</span>
                     </label>
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="No" name="alergy"/>
+                        <input type="radio" value="No" name="aspirin"/>
                         <span>No</span>
                     </label>
                 </div>

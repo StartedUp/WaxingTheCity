@@ -28,13 +28,13 @@ public class ApplicationController {
     @Autowired
     private NewClientService newClientService;
 
-    @RequestMapping("/new")
+    @RequestMapping("/")
     public String showNewClientForm() {
         LOGGER.info("Showing New Client registration form");
         return "registrationForm";
     }
     
-    @PostMapping("/register")
+    @PostMapping("/save")
     public String registerNewClient(@ModelAttribute NewClientBean bean,BindingResult result, Model model) {
     	newClientService.register(bean);
     	return "waxingTheCityForm";

@@ -76,8 +76,6 @@ public class PolicyCancellationService {
         //Time stamp
         long timeStamp=new Timestamp(System.currentTimeMillis()).getTime();
 
-
-
         try {
             createSignature(imageData, dateValue, timeStamp);
         } catch (Exception e) {
@@ -147,7 +145,7 @@ public class PolicyCancellationService {
 
     }
 
-    private void createSignature(String imageData, String dateValue,long timeStamp) throws Exception{
+    private void createSignature(String imageData, String dateValue, long timeStamp) throws Exception{
         File imageFile = new File(
                 signImagePath+dateValue+timeStamp+".png");
         if (!imageFile.exists()) {
@@ -160,10 +158,11 @@ public class PolicyCancellationService {
         BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
         BufferedImage newBufferedImage = new BufferedImage(bufferedImage.getWidth(),
                 bufferedImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
-        newBufferedImage.createGraphics().drawImage(bufferedImage, 0, 0, Color.BLUE, null);
-        ImageIO.write(bufferedImage, "png", imageFile);
+        newBufferedImage.createGraphics().drawImage(bufferedImage, 0, 0, Color.WHITE, null);
+        ImageIO.write(newBufferedImage, "png", imageFile);
 
     }
+
 
     public File copySourceFile(long timeStamp, String dateValue) throws IOException {
         File source = new File(srcPdfDir);

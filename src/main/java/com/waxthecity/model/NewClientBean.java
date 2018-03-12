@@ -6,9 +6,9 @@ package com.waxthecity.model;
  */
 public class NewClientBean {
 
-    private String firstName; 
+    private String firstName;
     private String lastName;
-    private String email; 
+    private String email;
     private String phoneNo;
     private String preferredContact;
     private String serviceProvider;
@@ -41,13 +41,14 @@ public class NewClientBean {
     private boolean bruising;
     private boolean diabetic;
     private boolean pregnant;
+    private boolean allergy;
 
     private String acneMedicines;
     private String acnePeriod;
     private String bleachingAgent;
     private String bleachingAgentPeriod;
     private String illness;
-    private String allergy;
+    private String aspirin;
     private String otherAllergy;
 
     private boolean sunburned;
@@ -100,19 +101,6 @@ public class NewClientBean {
     private boolean innerBackSide;
     private boolean neck;
 
-    /**
-	 * @return the other
-	 */
-	public boolean isOther() {
-		return other;
-	}
-
-	/**
-	 * @param other the other to set
-	 */
-	public void setOther(boolean other) {
-		this.other = other;
-	}
     public String getFirstName() {
         return firstName;
     }
@@ -297,7 +285,14 @@ public class NewClientBean {
         this.directMail = directMail;
     }
 
-    
+    public boolean isOther() {
+        return other;
+    }
+
+    public void setOther(boolean other) {
+        this.other = other;
+    }
+
     public String getMagazine() {
         return magazine;
     }
@@ -370,6 +365,14 @@ public class NewClientBean {
         this.pregnant = pregnant;
     }
 
+    public boolean isAllergy() {
+        return allergy;
+    }
+
+    public void setAllergy(boolean allergy) {
+        this.allergy = allergy;
+    }
+
     public String getAcneMedicines() {
         return acneMedicines;
     }
@@ -410,12 +413,12 @@ public class NewClientBean {
         this.illness = illness;
     }
 
-    public String getAllergy() {
-        return allergy;
+    public String getAspirin() {
+        return aspirin;
     }
 
-    public void setAllergy(String allergy) {
-        this.allergy = allergy;
+    public void setAspirin(String aspirin) {
+        this.aspirin = aspirin;
     }
 
     public String getOtherAllergy() {
@@ -828,6 +831,7 @@ public class NewClientBean {
                 ", radio=" + radio +
                 ", returnCustomer=" + returnCustomer +
                 ", directMail=" + directMail +
+                ", other=" + other +
                 ", magazine='" + magazine + '\'' +
                 ", thanfulPerson='" + thanfulPerson + '\'' +
                 ", ingrownHairs=" + ingrownHairs +
@@ -837,12 +841,13 @@ public class NewClientBean {
                 ", bruising=" + bruising +
                 ", diabetic=" + diabetic +
                 ", pregnant=" + pregnant +
+                ", allergy=" + allergy +
                 ", acneMedicines='" + acneMedicines + '\'' +
                 ", acnePeriod='" + acnePeriod + '\'' +
                 ", bleachingAgent='" + bleachingAgent + '\'' +
                 ", bleachingAgentPeriod='" + bleachingAgentPeriod + '\'' +
                 ", illness='" + illness + '\'' +
-                ", allergy='" + allergy + '\'' +
+                ", aspirin='" + aspirin + '\'' +
                 ", otherAllergy='" + otherAllergy + '\'' +
                 ", sunburned=" + sunburned +
                 ", tanningBooth=" + tanningBooth +

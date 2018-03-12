@@ -28,7 +28,7 @@ public class FormController {
     private static final Logger LOGGER= LoggerFactory.getLogger(FormController.class.getName());
     @Autowired
     private PdfService pdfService;
-    @RequestMapping("/")
+    @RequestMapping("/register")
     public String showForm() {
         LOGGER.info("Showing waxing the city form");
         return "waxingTheCityForm";
