@@ -89,36 +89,45 @@
     <div class='row'>
         <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
     </div>
-    <form id="waxingForm" action="/generate" method="post">
-        <div class="row">
+    <form id="waxingForm" action="/register" method="post">
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">First Name:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Last Name:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">Email:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Mobile Phone:</label>
-                    <input type="number" class="form-control" id="" name="" required>
+                    <input type="number" class="form-control" id="phoneNo" name="phoneNo" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">Preferred Contact (email, phone, SMS):</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <select class="form-control" id="preferredContact" name="preferredContact" required="required">
+                    	<option data-toggle="tooltip" value="" title="Hooray!" selected="selected" disabled="disabled">Select</option>
+                    	<option data-toggle="tooltip" value="Email" title="Hooray!">Email</option>
+                    	<option data-toggle="tooltip" value="Phone" title="Hooray!">Phone</option>
+						<option data-toggle="tooltip" value="SMS" title="Hooray!">SMS</option>
+                    </select>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Mobile Phone Service Provider:</label>
-                    <input type="number" class="form-control" id="" name="" required>
+                    <select class="form-control" id="serviceProvider" name="serviceProvider" required="required">
+                    	<option data-toggle="tooltip" value="" title="Hooray!" selected="selected" disabled="disabled">Select</option>
+                    	<option data-toggle="tooltip" value="BSNL" title="Hooray!">BSNL</option>
+                    	<option data-toggle="tooltip" value="Airtel" title="Hooray!">Airtel</option>
+						<option data-toggle="tooltip" value="Vodafone" title="Hooray!">Vodafone</option>
+                    </select>
                 </div>
             </div>
 
@@ -128,13 +137,13 @@
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="true" name="" required/>
+                        <input type="radio" value="true" name="activateEmail" required/>
                         <span>Yes</span>
                     </label>
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="false" name=""/>
+                        <input type="radio" value="false" name="activateEmail"/>
                         <span>No</span>
                     </label>
                 </div>
@@ -143,13 +152,13 @@
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="true" name="" required/>
+                        <input type="radio" value="true" name="activateSMS" required/>
                         <span>Yes</span>
                     </label>
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="false" name=""/>
+                        <input type="radio" value="false" name="activateSMS"/>
                         <span>No</span>
                     </label>
                 </div>
@@ -161,13 +170,13 @@
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="true" name="" required/>
+                        <input type="radio" value="true" name="gender" required/>
                         <span>Yes</span>
                     </label>
                 </div>
                 <div class="form-group col-sm-1">
                     <label class="radio-inline">
-                        <input type="radio" value="false" name=""/>
+                        <input type="radio" value="false" name="gender"/>
                         <span>No</span>
                     </label>
                 </div>
@@ -175,27 +184,27 @@
                     <label>Date of birth:</label>
                 </div>
                 <div class="form-group col-sm-4">
-                    <input type="date" class="form-control" id="" name="" required>
+                    <input type="date" class="form-control" id="dob" name="dob" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">Address:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="address" name="address" required>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">City:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="city" name="city" required>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-sm-6">
                     <label for="name">State:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="state" name="state" required>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="name">Zip:</label>
-                    <input type="text" class="form-control" id="" name="" required>
+                    <input type="text" class="form-control" id="zip" name="zip" required>
                 </div>
             </div>
 
@@ -204,56 +213,56 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-6"><label class="checkbox-inline">
-                            <input type="checkbox" name="" value="true">Walk-in/Drive-by
+                            <input type="checkbox" name="walkIn" value="true">Walk-in/Drive-by
                         </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="" value="true">Internet/Website
+                                <input type="checkbox" name="internet" value="true">Internet/Website
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label class="checkbox-inline">
-                            <input type="checkbox" name="" value="true">Radio
+                            <input type="checkbox" name="radio" value="true">Radio
                         </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="" value="true">Direct Mail
+                                <input type="checkbox" name="directMail" value="true">Direct Mail
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label class="checkbox-inline">
-                            <input type="checkbox" name="" value="true">Coupon
+                            <input type="checkbox" name="coupon" value="true">Coupon
                         </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="" value="true">Flyer
+                                <input type="checkbox" name="flyer" value="true">Flyer
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label class="checkbox-inline">
-                            <input type="checkbox" name="" value="true">Return Customer
+                            <input type="checkbox" name="returnCustomer" value="true">Return Customer
                         </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="" value="true">Print Ad
+                                <input type="checkbox" name="printAd" value="true">Print Ad
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-6"><label class="checkbox-inline">
-                            <input type="checkbox" name="" value="true">Referral/Word of Mouth
+                            <input type="checkbox" name="referral" value="true">Referral/Word of Mouth
                         </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="checkbox-inline">
-                                <input type="checkbox" name="" value="true">Other
+                                <input type="checkbox" name="other" value="true">Other
                             </label>
                         </div>
                     </div>
@@ -262,11 +271,11 @@
                     <div class="row">
                         <div class="form-group col-sm-12">
                             <label for="name">Which Magazine/paper?</label>
-                            <input type="text" class="form-control" id="" name="" required>
+                            <input type="text" class="form-control" id="magazine" name="magazine" required>
                         </div>
                         <div class="form-group col-sm-12">
                             <label for="name">Who can we thank?</label>
-                            <input type="text" class="form-control" id="" name="" required>
+                            <input type="text" class="form-control" id="thanfulPerson" name="thanfulPerson" required>
                         </div>
                     </div>
                 </div>
@@ -276,18 +285,17 @@
                 <div class="col-sm-6">
                     <div class="row">
                         <div class="col-sm-4">
-                            <label>Ingrown Hairs
-                            </label>
+                            <label>Ingrown Hairs</label>
                         </div>
                         <div class="col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="true" name="" required/>
+                                <input type="radio" value="true" name="ingrownHairs" required/>
                                 <span>Yes</span>
                             </label>
                         </div>
                         <div class="col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="false" name=""/>
+                                <input type="radio" value="false" name="ingrownHairs"/>
                                 <span>No</span>
                             </label>
                         </div>
@@ -302,13 +310,13 @@
                         <div class="form-group col-sm-2">
 
                             <label class="radio-inline">
-                                <input type="radio" value="true" name="" required/>
+                                <input type="radio" value="true" name="scarring" required/>
                                 <span>Yes</span>
                             </label>
                         </div>
                         <div class="form-group col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="false" name=""/>
+                                <input type="radio" value="false" name="scarring"/>
                                 <span>No</span>
                             </label>
                         </div>
@@ -325,13 +333,13 @@
                         <div class="form-group col-sm-2">
 
                             <label class="radio-inline">
-                                <input type="radio" value="true" name="" required/>
+                                <input type="radio" value="true" name="bumps" required/>
                                 <span>Yes</span>
                             </label>
                         </div>
                         <div class="form-group col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="false" name=""/>
+                                <input type="radio" value="false" name="bumps"/>
                                 <span>No</span>
                             </label>
                         </div>
@@ -346,13 +354,13 @@
                         <div class="form-group col-sm-2">
 
                             <label class="radio-inline">
-                                <input type="radio" value="true" name="" required/>
+                                <input type="radio" value="true" name="hyperpigmentation" required/>
                                 <span>Yes</span>
                             </label>
                         </div>
                         <div class="form-group col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="false" name=""/>
+                                <input type="radio" value="false" name="hyperpigmentation"/>
                                 <span>No</span>
                             </label>
                         </div>
@@ -369,13 +377,13 @@
                         <div class="form-group col-sm-2">
 
                             <label class="radio-inline">
-                                <input type="radio" value="true" name="" required/>
+                                <input type="radio" value="true" name="bruising" required/>
                                 <span>Yes</span>
                             </label>
                         </div>
                         <div class="form-group col-sm-2">
                             <label class="radio-inline">
-                                <input type="radio" value="false" name=""/>
+                                <input type="radio" value="false" name="bruising"/>
                                 <span>No</span>
                             </label>
                         </div>
@@ -566,7 +574,7 @@
             <div class="row">
                 <div class="form-group col-sm-12">
                     <label for="ill">Other allergies, please list : </label>
-                    <input type="text" disabled class="form-control" id="" name="">
+                    <input type="text" disabled class="form-control" id="otherAllergy" name="otherAllergy">
                 </div>
             </div>
             <div>
@@ -574,58 +582,58 @@
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">Sunburned, irritated or areas with open skin cannot be waxed
+                    <input type="checkbox" name="sunburned" value="true">Sunburned, irritated or areas with open skin cannot be waxed
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">Waxing cannot be performed if you have been in a tanning booth the same day
+                    <input type="checkbox" name="tanningBooth" value="true">Waxing cannot be performed if you have been in a tanning booth the same day
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">If you have a history of Herpes Simplex, waxing can cause an outbreak
+                    <input type="checkbox" name="herpesSimplex" value="true">If you have a history of Herpes Simplex, waxing can cause an outbreak
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">Waxing cannot be performed if you have had laser skin resurfacing within the past year
+                    <input type="checkbox" name="laserSkin" value="true">Waxing cannot be performed if you have had laser skin resurfacing within the past year
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">Waxing cannot be administered if you had a physician administered peel within the past two years
+                    <input type="checkbox" name="physicianAdministeredPeel" value="true">Waxing cannot be administered if you had a physician administered peel within the past two years
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">No sun/tanning booths for 2 days following a waxing treatment. Extra precaution should be taken if using
+                    <input type="checkbox" name="extraPrecaution" value="true">No sun/tanning booths for 2 days following a waxing treatment. Extra precaution should be taken if using
                     tanning accelerators
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">Wait 2-3 days to wax before/after tanning with accelerators
+                    <input type="checkbox" name="waitingTime" value="true">Wait 2-3 days to wax before/after tanning with accelerators
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">No hot tubs or baths for 24 hours following a body waxing treatment
+                    <input type="checkbox" name="noHotTubs" value="true">No hot tubs or baths for 24 hours following a body waxing treatment
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">No abrasives for 24 hours following a waxing treatment
+                    <input type="checkbox" name="noAbrasives" value="true">No abrasives for 24 hours following a waxing treatment
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">No deodorants for 24 hours following an underarm waxing treatment
+                    <input type="checkbox" name="noDeodorants" value="true">No deodorants for 24 hours following an underarm waxing treatment
                 </label>
             </div>
             <div>
                 <label class="checkbox-inline">
-                    <input type="checkbox" name="" value="true">Women may experience extra sensitivity to waxing up to a week prior to the beginning of their menses
+                    <input type="checkbox" name="extraSensitivity" value="true">Women may experience extra sensitivity to waxing up to a week prior to the beginning of their menses
                 </label>
             </div>
             <br/>

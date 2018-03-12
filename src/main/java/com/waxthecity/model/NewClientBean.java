@@ -1,14 +1,14 @@
 package com.waxthecity.model;
 
 /**
- * @author balaji
- *
+ * @author balaji 
+ * 
  */
 public class NewClientBean {
 
-    private String firstName;
+    private String firstName; 
     private String lastName;
-    private String email;
+    private String email; 
     private String phoneNo;
     private String preferredContact;
     private String serviceProvider;
@@ -100,6 +100,19 @@ public class NewClientBean {
     private boolean innerBackSide;
     private boolean neck;
 
+    /**
+	 * @return the other
+	 */
+	public boolean isOther() {
+		return other;
+	}
+
+	/**
+	 * @param other the other to set
+	 */
+	public void setOther(boolean other) {
+		this.other = other;
+	}
     public String getFirstName() {
         return firstName;
     }
@@ -284,14 +297,7 @@ public class NewClientBean {
         this.directMail = directMail;
     }
 
-    public boolean isOther() {
-        return other;
-    }
-
-    public void setOther(boolean other) {
-        this.other = other;
-    }
-
+    
     public String getMagazine() {
         return magazine;
     }
@@ -822,7 +828,6 @@ public class NewClientBean {
                 ", radio=" + radio +
                 ", returnCustomer=" + returnCustomer +
                 ", directMail=" + directMail +
-                ", other=" + other +
                 ", magazine='" + magazine + '\'' +
                 ", thanfulPerson='" + thanfulPerson + '\'' +
                 ", ingrownHairs=" + ingrownHairs +
