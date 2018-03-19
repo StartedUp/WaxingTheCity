@@ -9,6 +9,7 @@ import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import com.waxthecity.model.CancellationBean;
 import com.waxthecity.model.RegBean;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
@@ -50,7 +51,7 @@ public class PolicyCancellationService {
     @Value("${dropbox.access.token}")
     private String ACCESS_TOKEN ;
 
-    public void cancelPolicy(String imageData){
+    public void cancelPolicy(CancellationBean bean){
         LOGGER.info("cancellation pdf Source pdf {}", srcPdfDir);
         PdfStamper stamper = null;
         PdfReader reader = null;
@@ -73,39 +74,40 @@ public class PolicyCancellationService {
         da.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
         LOGGER.info("EST time {} ",da.format(date));
 
-        //Time stamp
-        long timeStamp=new Timestamp(System.currentTimeMillis()).getTime();
-
         try {
-            createSignature(imageData, dateValue, timeStamp);
+            createSignature(bean, dateValue);
         } catch (Exception e) {
             LOGGER.warn("Error creating image -->", e);
         }
 
 
-        String pdfName=dateValue + timeStamp + ".pdf";
+        String pdfName=dateValue+bean.getFirstName()+bean.getLastName()+".pdf";
 
         try {
-            File file = copySourceFile(timeStamp, dateValue);
+            File file = copySourceFile(bean, dateValue);
             reader = new PdfReader(srcPdfDir);
             stamper = new PdfStamper(reader, new FileOutputStream(copyPdfDir + pdfName));
             AcroFields form = stamper.getAcroFields();
+            //Setting acroform fields.
 
-            String creDate = "Date";
+            String creDate = "32";
             String print = "Print";
+
             //String field=form.getField(fieldName);
             form.setGenerateAppearances(true);
-            form.setFieldProperty(creDate, "setfflags", PdfFormField.TEXT_UNICODE, null);
             form.setFieldProperty(creDate, "textsize", new Float(0), null);
-            form.setFieldProperty(print, "textsize", new Float(0), null);
+
+
+
             form.setField(creDate, dateValue);
-            form.setField(print, dateValue);
+
+
             LOGGER.info("date value : {}", dateValue);
 
             LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
-            com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(signImagePath + dateValue + timeStamp + ".png");
+            com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(signImagePath + dateValue +bean.getFirstName()+bean.getLastName()+ ".png");
             PdfImage stream = new PdfImage(image, "", null);
-            stream.put(new PdfName("Sign"), new PdfName(dateValue + timeStamp + ".pdf"));
+            stream.put(new PdfName("Sign"), new PdfName(dateValue +bean.getFirstName()+bean.getLastName()+ ".pdf"));
             PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
             image.setDirectReference(ref.getIndirectReference());
             image.setAbsolutePosition(218, 512);
@@ -145,15 +147,15 @@ public class PolicyCancellationService {
 
     }
 
-    private void createSignature(String imageData, String dateValue, long timeStamp) throws Exception{
+    private void createSignature(CancellationBean bean, String dateValue) throws Exception{
         File imageFile = new File(
-                signImagePath+dateValue+timeStamp+".png");
+                signImagePath+dateValue+bean.getFirstName()+bean.getLastName()+".png");
         if (!imageFile.exists()) {
             imageFile.getParentFile().mkdir();
         }
         byte[] imagedata = DatatypeConverter.parseBase64Binary(
-                imageData.substring(
-                        imageData.indexOf(",") + 1)
+                bean.getImaageData().substring(
+                        bean.getImaageData().indexOf(",") + 1)
         );
         BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
         BufferedImage newBufferedImage = new BufferedImage(bufferedImage.getWidth(),
@@ -164,7 +166,7 @@ public class PolicyCancellationService {
     }
 
 
-    public File copySourceFile(long timeStamp, String dateValue) throws IOException {
+    public File copySourceFile(CancellationBean bean, String dateValue) throws IOException {
         File source = new File(srcPdfDir);
         LOGGER.error("Source file : {} ",source.exists());
         if (!source.exists()) {
@@ -174,7 +176,7 @@ public class PolicyCancellationService {
         if (!file.isDirectory())
             file.mkdir();
 
-        File destination = new File(copyPdfDir + dateValue + timeStamp + ".pdf");
+        File destination = new File(copyPdfDir + dateValue + bean.getFirstName() + bean.getLastName()+".pdf");
         FileChannel src = new FileInputStream(source).getChannel();
         FileChannel dest = new FileOutputStream(destination).getChannel();
         dest.transferFrom(src, 0, src.size());

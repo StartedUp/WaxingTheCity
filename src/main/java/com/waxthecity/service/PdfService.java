@@ -50,7 +50,7 @@ public class PdfService {
     @Value("${pdf.sign.image.path}")
     private String signImagePath;
     @Value("${dropbox.access.token}")
-    private String ACCESS_TOKEN ;
+    private String ACCESS_TOKEN;
 
     public void generatePdf(RegBean regBean) {
         LOGGER.info("generating pdf. Source pdf {}", srcPdfDir);
@@ -97,7 +97,7 @@ public class PdfService {
             String time2 = "How longhow often_2";
             String illness = "Any other illnesscondition a medical professional is treating you for";
             String alergy = "No";
-            String limitation = "Note any limitations on";
+            String limitation = "Note any limitations on1";
             String creDate = "Date";
             // String field=form.getField(fieldName);
             form.setGenerateAppearances(true);

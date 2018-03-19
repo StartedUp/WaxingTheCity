@@ -1,5 +1,6 @@
 package com.waxthecity.controller;
 
+import com.waxthecity.model.CancellationBean;
 import com.waxthecity.service.PolicyCancellationService;
 import com.waxthecity.model.NewClientBean;
 import com.waxthecity.service.NewClientService;
@@ -47,9 +48,9 @@ public class ApplicationController {
     }
 
     @PostMapping("/cancel")
-    public String cancel(@RequestParam("imageData") String imagedata){
-        LOGGER.info("cancel form submission : {} ", imagedata);
-        cancellationService.cancelPolicy(imagedata);
+    public String cancel(@ModelAttribute CancellationBean bean){
+        LOGGER.info("cancel form submission : {} ", bean);
+        cancellationService.cancelPolicy(bean);
         return "waxingTheCityForm";
     }
 
