@@ -96,7 +96,7 @@ public class PdfService {
             String list2 = "Please list_2";
             String time2 = "How longhow often_2";
             String illness = "Any other illnesscondition a medical professional is treating you for";
-            String alergy = "No";
+            String alergy = "aspirin";
             String limitation = "Note any limitations on1";
             String creDate = "Date";
             // String field=form.getField(fieldName);

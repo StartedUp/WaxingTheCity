@@ -90,8 +90,7 @@ public class PolicyCancellationService {
             AcroFields form = stamper.getAcroFields();
             //Setting acroform fields.
 
-            String creDate = "32";
-            String print = "Print";
+            String creDate = "Text1";
 
             //String field=form.getField(fieldName);
             form.setGenerateAppearances(true);
