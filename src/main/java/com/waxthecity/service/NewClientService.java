@@ -89,7 +89,6 @@ public class NewClientService {
         LOGGER.info("EST time {} ",da.format(date));
         LOGGER.info("New client : {} ", bean);
 
-
         try {
             createSignature(bean, dateValue);
         } catch (Exception e) {
@@ -104,6 +103,8 @@ public class NewClientService {
             reader = new PdfReader(srcPdfDir);
             stamper = new PdfStamper(reader, new FileOutputStream(copyPdfDir + pdfName));
             AcroFields form = stamper.getAcroFields();
+            LOGGER.error(" field value : {}",stamper.getAcroFields().getFieldType("yesEmail"));
+            LOGGER.error(" Text value : {}",stamper.getAcroFields().getFields());
 
 
             String today="Text";
@@ -120,16 +121,16 @@ public class NewClientService {
             String pin = "21";
             String paper = "22";
             String thankfulPerson = "23";
-            String illness = ""; //32 signature field
+            String illness = "29"; //28 new allergy field 30 illness reason
             String acneList = "24";
             String acnePeriod = "25";
             String bleachingList = "26";
             String bleachingPeriod = "27";
-            String allergyYes = "28";
-            String aspirin = "29";
-            String minor = "30";
-            String limitation = "31";
-            String newDate = "33";
+            String allergyYes = "31"; // allergy yes 31
+            String aspirin = "28"; // aspirin reason 32
+            String minor = "minor";
+            String limitation = "limitation";
+            String newDate = "dateField";
 
             form.setFieldProperty(firstName, "textsize", new Float(0), null);
             form.setFieldProperty(lastName, "textsize", new Float(0), null);
@@ -180,88 +181,89 @@ public class NewClientService {
             form.setField(today, dateValue);
             form.setField(newDate, dateValue);
 
-            form.setField("Check Box211", bean.isActivateEmail()?"On":"Off");
-            form.setField("Check Box11", bean.isActivateEmail()?"Off":"On");
-            form.setField("Check 12", bean.isActivateSMS()?"On":"Off");
-            form.setField("Check Box13", bean.isActivateSMS()?"Off":"On");
-            form.setField("Check 14", bean.isGender()?"On":"Off");
-            form.setField("Check Box1231", bean.isGender()?"Off":"On");
+            form.setField("yesEmail", bean.isActivateEmail()?"On":"Off");
+            form.setField("noEmail", bean.isActivateEmail()?"Off":"On");
+            form.setField("yesSms", bean.isActivateSMS()?"On":"Off");
+            form.setField("noSms", bean.isActivateSMS()?"Off":"On");
+            form.setField("male", bean.isGender()?"On":"Off");
+            form.setField("female", bean.isGender()?"Off":"On");
 
-            form.setField("Check Box14", bean.isWalkIn()?"On":"Off");
-            form.setField("Check Box15", bean.isCoupon()?"On":"Off");
-            form.setField("Check Box16", bean.isPrintAd()?"On":"Off");
-            form.setField("Check Box17", bean.isReferral()?"On":"Off");
-            form.setField("Check Box18", bean.isInternet()?"On":"Off");
-            form.setField("Check Box19", bean.isFlyer()?"On":"Off");
-            form.setField("Check Box1813613", bean.isRadio()?"On":"Off");
-            form.setField("Check Box152121", bean.isReturnCustomer()?"On":"Off");
-            form.setField("Check Box1921210", bean.isDirectMail()?"On":"Off");
-            form.setField("Check Box18521521", bean.isOther()?"On":"Off");
+            form.setField("walk-in", bean.isWalkIn()?"On":"Off");
+            form.setField("coupon", bean.isCoupon()?"On":"Off");
+            form.setField("printAd", bean.isPrintAd()?"On":"Off");
+            form.setField("referral", bean.isReferral()?"On":"Off");
+            form.setField("internet", bean.isInternet()?"On":"Off");
+            form.setField("flyer", bean.isFlyer()?"On":"Off");
+            form.setField("radio", bean.isRadio()?"On":"Off");
+            form.setField("returnCustomer", bean.isReturnCustomer()?"On":"Off");
+            form.setField("mail", bean.isDirectMail()?"On":"Off");
+            form.setField("other", bean.isOther()?"On":"Off");
 
-            form.setField("Check Box20", bean.isIngrownHairs()?"On":"Off");
-            form.setField("Check Box21", bean.isIngrownHairs()?"Off":"On");
-            form.setField("Check Box22", bean.isScarring()?"On":"Off");
-            form.setField("Check Box23", bean.isScarring()?"Off":"On");
-            form.setField("Check Box24", bean.isBumps()?"On":"Off");
-            form.setField("Check Box25", bean.isBumps()?"Off":"On");
-            form.setField("Check Box26", bean.isHyperpigmentation()?"On":"Off");
-            form.setField("Check Box27", bean.isHyperpigmentation()?"Off":"On");
-            form.setField("Check 28", bean.isBruising()?"On":"Off");
-            form.setField("Check Box29", bean.isBruising()?"Off":"On");
-            form.setField("Check Box30", bean.isAllergy()?"On":"Off");
-            form.setField("Check Box31", bean.isAllergy()?"Off":"On");
-            form.setField("Check Box32", bean.isAllergy()?"On":"Off");
-            form.setField("Check Box33", bean.isAllergy()?"Off":"On");
-            form.setField("Check Box34", bean.isDiabetic()?"On":"Off");
-            form.setField("Check Box35", bean.isDiabetic()?"Off":"On");
-            form.setField("Check Box36", bean.isPregnant()?"On":"Off");
-            form.setField("Check Box37", bean.isPregnant()?"Off":"On");
+            form.setField("yesIngrown", bean.isIngrownHairs()?"On":"Off");
+            form.setField("noIngrown", bean.isIngrownHairs()?"Off":"On");
+            form.setField("yesScarring", bean.isScarring()?"On":"Off");
+            form.setField("noScarring", bean.isScarring()?"Off":"On");
+            form.setField("yesBumbs", bean.isBumps()?"On":"Off");
+            form.setField("noBumbs", bean.isBumps()?"Off":"On");
+            form.setField("yesHypig", bean.isHyperpigmentation()?"On":"Off");
+            form.setField("noHypig", bean.isHyperpigmentation()?"Off":"On");
+            form.setField("yesBruising", bean.isBruising()?"On":"Off");
+            form.setField("noBruising", bean.isBruising()?"Off":"On");
+            form.setField("yesAllergies", bean.isAllergy()?"On":"Off");
+            form.setField("noAllergy", bean.isAllergy()?"Off":"On");
+            //form.setField("132", bean.isAllergy()?"On":"Off");
+            //form.setField("133", bean.isAllergy()?"Off":"On");
+            form.setField("yesDiabetic", bean.isDiabetic()?"On":"Off");
+            form.setField("noDiabetic", bean.isDiabetic()?"Off":"On");
+            form.setField("yesPregnant", bean.isPregnant()?"On":"Off");
+            form.setField("noPregnant", bean.isPregnant()?"Off":"On");
 
-            form.setField("Check Box40", bean.isSunburned()?"On":"Off");
-            form.setField("Check Box41", bean.isTanningBooth()?"On":"Off");
-            form.setField("Check Box42", bean.isHerpesSimplex()?"On":"Off");
-            form.setField("Check Box43", bean.isLaserSkin()?"On":"Off");
-            form.setField("Check Box44", bean.isPhysicianAdministeredPeel()?"On":"Off");
-            form.setField("Check Box45", bean.isExtraPrecaution()?"On":"Off");
-            form.setField("Check Box46", bean.isWaitingTime()?"On":"Off");
-            form.setField("Check Box47", bean.isNoHotTubs()?"On":"Off");
-            form.setField("Check Box48", bean.isNoAbrasives()?"On":"Off");
-            form.setField("Check Box49", bean.isNoDeodorants()?"On":"Off");
-            form.setField("Check Box50", bean.isExtraSensitivity()?"On":"Off");
+            form.setField("sunburned", bean.isSunburned()?"On":"Off");
+            form.setField("tanningBooth", bean.isTanningBooth()?"On":"Off");
+            form.setField("herbs", bean.isHerpesSimplex()?"On":"Off");
+            form.setField("laser", bean.isLaserSkin()?"On":"Off");
+            form.setField("physician", bean.isPhysicianAdministeredPeel()?"On":"Off");
+            form.setField("noSun", bean.isExtraPrecaution()?"On":"Off");
+            form.setField("waiting", bean.isWaitingTime()?"On":"Off");
+            form.setField("noHottub", bean.isNoHotTubs()?"On":"Off");
+            form.setField("noAbrasive", bean.isNoAbrasives()?"On":"Off");
+            form.setField("nodeo", bean.isNoDeodorants()?"On":"Off");
+            form.setField("women", bean.isExtraSensitivity()?"On":"Off");
 
-            form.setField("Check Box60", bean.isBrowShaping()?"On":"Off");
-            form.setField("Check Box61", bean.isLip()?"On":"Off");
-            form.setField("Check 62", bean.isChin()?"On":"Off");
-            form.setField("Check 63", bean.isSideburns()?"On":"Off");
-            form.setField("Check 64", bean.isNose()?"On":"Off");
-            form.setField("Check 65", bean.isEars()?"On":"Off");
-            form.setField("Check B65", bean.isLashTint()?"On":"Off");
-            form.setField("Check 66", bean.isBrowTint()?"On":"Off");
-            form.setField("Check 67", bean.isFullLeg()?"On":"Off");
-            form.setField("Check 68", bean.isHalfLeg()?"On":"Off");
-            form.setField("Check 69", bean.isFullArm()?"On":"Off");
-            form.setField("Check 70", bean.isHalfArm()?"On":"Off");
-            form.setField("Check 71", bean.isBikini()?"On":"Off");
-            form.setField("Check 72", bean.isModifiedBikini()?"On":"Off");
-            form.setField("Check 73", bean.isBrazilianBikini()?"On":"Off");
-            form.setField("Check74", bean.isButtocks()?"On":"Off");
-            form.setField("Check 75", bean.isInnerBackSide()?"On":"Off");
-            form.setField("Check76", bean.isUnderArm()?"On":"Off");
-            form.setField("Check 77", bean.isFullBack()?"On":"Off");
-            form.setField("Check 78", bean.isHalfBack()?"On":"Off");
-            form.setField("Check 79", bean.isChest()?"On":"Off");
-            form.setField("Check 80", bean.isAbdomen()?"On":"Off");
-            form.setField("Check 81", bean.isNeck()?"On":"Off");
-            form.setField("Check 82", bean.isBasicBrazilianMen()?"On":"Off");
-            form.setField("Check 83", bean.isModifiedBrazilianMen()?"On":"Off");
-            form.setField("Check 84", bean.isFullBrazilianMen()?"On":"Off");
-            form.setField("Check 85", bean.isBrowShapingLip()?"On":"Off");
-            form.setField("Check 86", bean.isFullLegBikini()?"On":"Off");
-            form.setField("Check 88", bean.isLashBrowTint()?"On":"Off");
-            form.setField("Check 89", bean.isFullFace()?"On":"Off");
-            form.setField("Check 90", bean.isMenMasculineTailoring()?"On":"Off");
-            form.setField("Check 91", bean.isMenMaintenanceBrow()?"On":"Off");
-            form.setField("Check 92", bean.isMenFacialGroomingCombo()?"On":"Off");
+            form.setField("browshaping", bean.isBrowShaping()?"On":"Off");
+            form.setField("lip", bean.isLip()?"On":"Off");
+            form.setField("chin", bean.isChin()?"On":"Off");
+            form.setField("sideburns", bean.isSideburns()?"On":"Off");
+            form.setField("nose", bean.isNose()?"On":"Off");
+            form.setField("ears", bean.isEars()?"On":"Off");
+            form.setField("lashTint", bean.isLashTint()?"On":"Off");
+            form.setField("browTint", bean.isBrowTint()?"On":"Off");
+            form.setField("fullLeg", bean.isFullLeg()?"On":"Off");
+            form.setField("halfLeg", bean.isHalfLeg()?"On":"Off");
+            form.setField("fullArm", bean.isFullArm()?"On":"Off");
+            form.setField("halfArm", bean.isHalfArm()?"On":"Off");
+            form.setField("bikini", bean.isBikini()?"On":"Off");
+            form.setField("modifiedBikini", bean.isModifiedBikini()?"On":"Off");
+            form.setField("brazilianBikini", bean.isBrazilianBikini()?"On":"Off");
+            form.setField("buttoks", bean.isButtocks()?"On":"Off");
+            form.setField("innerBackside", bean.isInnerBackSide()?"On":"Off");
+            form.setField("underArm", bean.isUnderArm()?"On":"Off");
+            form.setField("fullBack", bean.isFullBack()?"On":"Off");
+            form.setField("halfBack", bean.isHalfBack()?"On":"Off");
+            form.setField("chest", bean.isChest()?"On":"Off");
+            form.setField("abdomen", bean.isAbdomen()?"On":"Off");
+            form.setField("neck", bean.isNeck()?"On":"Off");
+            form.setField("basicBrazilian", bean.isBasicBrazilianMen()?"On":"Off");
+            form.setField("modifiedBrazilian", bean.isModifiedBrazilianMen()?"On":"Off");
+            form.setField("fullBrazilian", bean.isFullBrazilianMen()?"On":"Off");
+            form.setField("brow", bean.isBrowShapingLip()?"On":"Off");
+            form.setField("fullLegBikini", bean.isFullLegBikini()?"On":"Off");
+            form.setField("lashBrow", bean.isLashBrowTint()?"On":"Off");
+            form.setField("fullFace", bean.isFullFace()?"On":"Off");
+            form.setField("mensMasc", bean.isMenMasculineTailoring()?"On":"Off");
+            form.setField("mensMaintenance", bean.isMenMaintenanceBrow()?"On":"Off");
+            form.setField("mensFacial", bean.isMenFacialGroomingCombo()?"On":"Off");
+            form.setField("tween", bean.isTweenBrowShaping()?"On":"Off");
 
 
 
@@ -280,7 +282,7 @@ public class NewClientService {
             form.setField(illness, regBean.getIllness());
             form.setField(alergy, regBean.getAlergy());
             form.setField(limitation, bean.getLimitation());*/
-            String diabetic[] = form.getAppearanceStates("Are you diabetic Yes");
+            /*String diabetic[] = form.getAppearanceStates("Are you diabetic Yes");
             LOGGER.info("Diabetic yes state {}", diabetic);
             form.setField("Are you diabetic Yes", bean.isDiabetic()?"On":"Off");
             form.setField("No", bean.isDiabetic()?"Off":"On");
@@ -325,7 +327,7 @@ public class NewClientService {
             form.setField("Under Arm", bean.isUnderArm() ?"On":"Off");
             form.setField("Inner Backside", bean.isInnerBackSide() ?"On":"Off");
             form.setField("Neck", bean.isNeck() ?"On":"Off");
-
+*/
             LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
             Image image = Image.getInstance(signImagePath + dateValue + bean.getFirstName() + ".png");
             PdfImage stream = new PdfImage(image, "", null);
@@ -336,20 +338,23 @@ public class NewClientService {
             image.scaleAbsolute(250, 20);
             PdfContentByte over = stamper.getOverContent(2);
             over.addImage(image);
-
             stamper.setFormFlattening(true);
-            stamper.close(); 
+            stamper.close();
+
             // getting pdf field names for our reference
-            PDDocument pdDocument = PDDocument.load(new File(srcPdfDir));
+            PDDocument pdDocument = null;
+            try {
+                pdDocument = PDDocument.load(new File(srcPdfDir));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             PDDocumentCatalog pdCatalog = pdDocument.getDocumentCatalog();
             PDAcroForm pdAcroForm = pdCatalog.getAcroForm();
-            LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
-            LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
-            LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
             LOGGER.info("Printing the form names {}", pdAcroForm.getFields());
             for (PDField pdField : pdAcroForm.getFields()) {
                 System.out.println(pdField);
             }
+
             // to upload into dropbox automatically
             //putInDropbox(pdfName);
         } catch (IOException e) {
