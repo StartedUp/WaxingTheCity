@@ -49,31 +49,12 @@ public class PolicyCancellationService {
     @Value("${pdf.cancellation.sign.image.path}")
     private String signImagePath;
     @Value("${dropbox.access.token}")
-    private String ACCESS_TOKEN ;
+    private String ACCESS_TOKEN;
 
-    public void cancelPolicy(CancellationBean bean){
+    public void cancelPolicy(CancellationBean bean, String dateValue) {
         LOGGER.info("cancellation pdf Source pdf {}", srcPdfDir);
         PdfStamper stamper = null;
         PdfReader reader = null;
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-        String systemDate =new Date().toString(); //IST Time
-        LOGGER.info("IST time {} ",systemDate);
-        Date date = null;
-        try {
-            date = dateTimeFormat.parse(systemDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        dateFormat.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
-        String dateValue = dateFormat.format(date);
-        LOGGER.info("EST date {} ",dateValue);
-
-        //For logger information
-        DateFormat da=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-        da.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
-        LOGGER.info("EST time {} ",da.format(date));
-
         try {
             createSignature(bean, dateValue);
         } catch (Exception e) {
@@ -81,7 +62,7 @@ public class PolicyCancellationService {
         }
 
 
-        String pdfName=dateValue+bean.getFirstName()+bean.getLastName()+".pdf";
+        String pdfName = dateValue + "cancel" + bean.getFirstName() + bean.getLastName() + ".pdf";
 
         try {
             File file = copySourceFile(bean, dateValue);
@@ -97,16 +78,15 @@ public class PolicyCancellationService {
             form.setFieldProperty(creDate, "textsize", new Float(0), null);
 
 
-
             form.setField(creDate, dateValue);
 
 
             LOGGER.info("date value : {}", dateValue);
 
-            LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
-            com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(signImagePath + dateValue +bean.getFirstName()+bean.getLastName()+ ".png");
+            LOGGER.info("Pdf pages {}", reader.getNumberOfPages());
+            com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(signImagePath + dateValue + "cancel" +bean.getFirstName() + bean.getLastName() + ".png");
             PdfImage stream = new PdfImage(image, "", null);
-            stream.put(new PdfName("Sign"), new PdfName(dateValue +bean.getFirstName()+bean.getLastName()+ ".pdf"));
+            stream.put(new PdfName("Sign"), new PdfName(dateValue + "cancel" + bean.getFirstName() + bean.getLastName() + ".pdf"));
             PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
             image.setDirectReference(ref.getIndirectReference());
             image.setAbsolutePosition(218, 512);
@@ -146,9 +126,9 @@ public class PolicyCancellationService {
 
     }
 
-    private void createSignature(CancellationBean bean, String dateValue) throws Exception{
+    private void createSignature(CancellationBean bean, String dateValue) throws Exception {
         File imageFile = new File(
-                signImagePath+dateValue+bean.getFirstName()+bean.getLastName()+".png");
+                signImagePath + dateValue + "cancel" + bean.getFirstName() + bean.getLastName() + ".png");
         if (!imageFile.exists()) {
             imageFile.getParentFile().mkdir();
         }
@@ -167,7 +147,7 @@ public class PolicyCancellationService {
 
     public File copySourceFile(CancellationBean bean, String dateValue) throws IOException {
         File source = new File(srcPdfDir);
-        LOGGER.error("Source file : {} ",source.exists());
+        LOGGER.error("Source file : {} ", source.exists());
         if (!source.exists()) {
             source.getParentFile().mkdir();
         }
@@ -175,7 +155,7 @@ public class PolicyCancellationService {
         if (!file.isDirectory())
             file.mkdir();
 
-        File destination = new File(copyPdfDir + dateValue + bean.getFirstName() + bean.getLastName()+".pdf");
+        File destination = new File(copyPdfDir + dateValue + "cancel" + bean.getFirstName() + bean.getLastName() + ".pdf");
         FileChannel src = new FileInputStream(source).getChannel();
         FileChannel dest = new FileOutputStream(destination).getChannel();
         dest.transferFrom(src, 0, src.size());
@@ -192,16 +172,16 @@ public class PolicyCancellationService {
         LOGGER.info("drop box account info {} ", account.getName().getDisplayName());
 
         // Upload "test.txt" to Dropbox
-        try (InputStream in = new FileInputStream(copyPdfDir+pdfName)) {
-            FileMetadata metadata = client.files().uploadBuilder("/Waxing the City-Victor/Intake Forms/"+pdfName)
+        try (InputStream in = new FileInputStream(copyPdfDir + pdfName)) {
+            FileMetadata metadata = client.files().uploadBuilder("/Waxing the City-Victor/Intake Forms/" + pdfName)
                     .uploadAndFinish(in);
-            LOGGER.info(" path of local {} ",("/Waxing the City-Victor/Intake Forms/"+pdfName));
+            LOGGER.info(" path of local {} ", ("/Waxing the City-Victor/Intake Forms/" + pdfName));
         }
         // List of files in the dropbox...
         ListFolderResult result = client.files().listFolder("/Waxing the City-Victor/Intake Forms/");
         while (true) {
             for (Metadata metadata : result.getEntries()) {
-                LOGGER.info("PathLower {} ",metadata.getPathLower());
+                LOGGER.info("PathLower {} ", metadata.getPathLower());
             }
 
             if (!result.getHasMore()) {

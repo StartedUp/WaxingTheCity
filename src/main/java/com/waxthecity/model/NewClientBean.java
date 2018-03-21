@@ -42,7 +42,7 @@ public class NewClientBean {
     private boolean diabetic;
     private boolean pregnant;
     private boolean allergy;
-    private String allergyYes;
+    private String specificAllergy;
 
     private String acneMedicines;
     private String acnePeriod;
@@ -147,21 +147,15 @@ public class NewClientBean {
         return serviceProvider;
     }
 
-    /**
-	 * @return the allergyYes
-	 */
-	public String getAllergyYes() {
-		return allergyYes;
-	}
+    public String getSpecificAllergy() {
+        return specificAllergy;
+    }
 
-	/**
-	 * @param allergyYes the allergyYes to set
-	 */
-	public void setAllergyYes(String allergyYes) {
-		this.allergyYes = allergyYes;
-	}
+    public void setSpecificAllergy(String specificAllergy) {
+        this.specificAllergy = specificAllergy;
+    }
 
-	public void setServiceProvider(String serviceProvider) {
+    public void setServiceProvider(String serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
 

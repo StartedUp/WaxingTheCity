@@ -63,38 +63,18 @@ public class NewClientService {
 	@Value("${dropbox.access.token}")
 	private String ACCESS_TOKEN;
 
-	public void register(NewClientBean bean) {
+	public void register(NewClientBean bean, String dateValue) {
 
 		LOGGER.info("registering new client pdf. Source pdf {}", srcPdfDir);
 		PdfStamper stamper = null;
 		PdfReader reader = null;
-		SimpleDateFormat dateTimeFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-		String systemDate = new Date().toString(); // IST Time
-		LOGGER.info("IST time {} ", systemDate);
-		Date date = null;
-		try {
-			date = dateTimeFormat.parse(systemDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-		dateFormat.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
-		String dateValue = dateFormat.format(date);
-		LOGGER.info("EST date {} ", dateValue);
-
-		// For logger information
-		DateFormat da = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-		da.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
-		LOGGER.info("EST time {} ", da.format(date));
-		LOGGER.info("New client : {} ", bean);
-
 		try {
 			createSignature(bean, dateValue);
 		} catch (Exception e) {
 			LOGGER.warn("Error creating image -->", e);
 		}
 
-		String pdfName = dateValue + bean.getFirstName()+bean.getLastName() + ".pdf";
+		String pdfName = dateValue +"new"+ bean.getFirstName()+bean.getLastName() + ".pdf";
 
 		try {
 			File file = copySourceFile(bean, dateValue);
@@ -123,9 +103,9 @@ public class NewClientService {
 			String acnePeriod = "25";
 			String bleachingList = "26";
 			String bleachingPeriod = "27";
-			String allergyYes = "28";
+			String specificAllergy = "28";
 			String otherAllergy = "32"; // allergy yes 31
-			String aspirin = "28"; // aspirin reason 32
+			String aspirin = "31"; // aspirin reason 32
 			String minor = "minor";
 			String limitation = "limitation";
 			String newDate = "dateField";
@@ -153,7 +133,7 @@ public class NewClientService {
 			form.setFieldProperty(minor, "textsize", new Float(0), null);
 			form.setFieldProperty(limitation, "textsize", new Float(0), null);
 			form.setFieldProperty(today, "textsize", new Float(0), null);
-			form.setFieldProperty(allergyYes, "textsize", new Float(0), null);
+			form.setFieldProperty(specificAllergy, "textsize", new Float(0), null);
 
 
 			form.setField(firstName, bean.getFirstName());
@@ -180,8 +160,7 @@ public class NewClientService {
 			form.setField(limitation, bean.getLimitation());
 			form.setField(today, dateValue);
 			form.setField(newDate, dateValue);
-			form.setField(allergyYes, bean.getAllergyYes());
-
+			form.setField(specificAllergy, bean.getSpecificAllergy());
 
 			form.setField("yesEmail", bean.isActivateEmail() ? "On" : "Off");
 			form.setField("noEmail", bean.isActivateEmail() ? "Off" : "On");
@@ -271,9 +250,9 @@ public class NewClientService {
 
 			LOGGER.info("Pdf pages {}", reader.getNumberOfPages());
 			Image image = Image
-					.getInstance(signImagePath + dateValue + bean.getFirstName() + bean.getLastName() + ".png");
+					.getInstance(signImagePath + dateValue +"new"+ bean.getFirstName() + bean.getLastName() + ".png");
 			PdfImage stream = new PdfImage(image, "", null);
-			stream.put(new PdfName("Sign"), new PdfName(dateValue + bean.getFirstName()+bean.getLastName() + ".pdf"));
+			stream.put(new PdfName("Sign"), new PdfName(dateValue +"new"+ bean.getFirstName()+bean.getLastName() + ".pdf"));
 			PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
 			image.setDirectReference(ref.getIndirectReference());
 			image.setAbsolutePosition(85, 525);
@@ -298,7 +277,7 @@ public class NewClientService {
 			}
 
 			// to upload into dropbox automatically
-			// putInDropbox(pdfName);
+			 putInDropbox(pdfName);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -321,7 +300,7 @@ public class NewClientService {
 	}
 
 	private void createSignature(NewClientBean bean, String dateValue) throws Exception {
-		File imageFile = new File(signImagePath + dateValue + bean.getFirstName()+bean.getLastName() + ".png");
+		File imageFile = new File(signImagePath + dateValue+"new" + bean.getFirstName()+bean.getLastName() + ".png");
 		if (!imageFile.exists()) {
 			imageFile.getParentFile().mkdir();
 		}
@@ -344,7 +323,7 @@ public class NewClientService {
 		if (!file.isDirectory())
 			file.mkdir();
 
-		File destination = new File(copyPdfDir + dateValue + bean.getFirstName()+bean.getLastName() + ".pdf");
+		File destination = new File(copyPdfDir + dateValue +"new"+ bean.getFirstName()+bean.getLastName() + ".pdf");
 		FileChannel src = new FileInputStream(source).getChannel();
 		FileChannel dest = new FileOutputStream(destination).getChannel();
 		dest.transferFrom(src, 0, src.size());

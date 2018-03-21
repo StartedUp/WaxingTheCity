@@ -94,19 +94,19 @@
 
             });
             $('#serviceProvider').on('change', function () {
-                if (this.value === 'Other') {
+                if (this.value === "Other") {
                     console.log(this.value);
-                    $(this).id='changed';
+                    $(this).attr('name', 'chsngr');
+                    console.log("drop down name "+this.name);
                     $('#form-service').show();
-                    $('#service').name='serviceProvider';
-                    console.log("service provider "+$('#service').value)
+                    $('#serviceField').attr('name','serviceProvider');
                 }
-                if (this.value !== 'Other') {
+                if (this.value !== "Other") {
                     console.log(this.value);
-                    $(this).id='serviceProvider';
+                    $(this).attr('name', 'serviceProvider');
+                    console.log(this.name);
                     $('#form-service').hide();
-                    $('#service').name='changed';
-                    console.log("service provider "+$('#service').value)
+                    $('#serviceField').attr('name','chang');
                 }
 
             });
@@ -134,6 +134,9 @@
     </div>
     <div class='row'>
         <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
+    </div>
+    <div class='row'>
+        <div class="col-sm-12 text-center"><h3>NEW CLIENT</h3></div><br/><br/>
     </div>
     <form id="waxingForm" action="/save" method="post">
         <div class="row">
@@ -184,7 +187,7 @@
         </div>
         <div class="form-group col-sm-offset-6" id="form-service" style="display: none">
             <label>Service Provider : </label>
-            <input type="text" class="form-control" id="service" name="A">
+            <input type="text" class="form-control" id="serviceField" name="A">
         </div>
 
         <div class="row">
@@ -327,11 +330,11 @@
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <label for="name">Which Magazine/paper?</label>
-                        <input type="text" class="form-control" id="magazine" name="magazine" required>
+                        <input type="text" class="form-control" id="magazine" name="magazine">
                     </div>
                     <div class="form-group col-sm-12">
                         <label for="name">Who can we thank?</label>
-                        <input type="text" class="form-control" id="thanfulPerson" name="thanfulPerson" required>
+                        <input type="text" class="form-control" id="thanfulPerson" name="thanfulPerson">
                     </div>
                 </div>
             </div>
@@ -622,7 +625,7 @@
             </div>
             <div class="form-group col-sm-1">
                 <label class="radio-inline">
-                    <input type="radio" value="No" name="aspirin"/>
+                    <input type="radio" value="No" checked name="aspirin"/>
                     <span>No</span>
                 </label>
             </div>
@@ -638,68 +641,68 @@
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="sunburned" value="true">Sunburned, irritated or areas with open skin cannot
+                <input type="checkbox" name="sunburned" value="true" required>Sunburned, irritated or areas with open skin cannot
                 be waxed
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="tanningBooth" value="true">Waxing cannot be performed if you have been in a
+                <input type="checkbox" name="tanningBooth" value="true" required>Waxing cannot be performed if you have been in a
                 tanning booth the same day
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="herpesSimplex" value="true">If you have a history of Herpes Simplex, waxing
+                <input type="checkbox" name="herpesSimplex" value="true" required>If you have a history of Herpes Simplex, waxing
                 can cause an outbreak
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="laserSkin" value="true">Waxing cannot be performed if you have had laser
+                <input type="checkbox" name="laserSkin" value="true" required>Waxing cannot be performed if you have had laser
                 skin resurfacing within the past year
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="physicianAdministeredPeel" value="true">Waxing cannot be administered if
+                <input type="checkbox" name="physicianAdministeredPeel" value="true" required>Waxing cannot be administered if
                 you had a physician administered peel within the past two years
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="extraPrecaution" value="true">No sun/tanning booths for 2 days following a
+                <input type="checkbox" name="extraPrecaution" value="true" required>No sun/tanning booths for 2 days following a
                 waxing treatment. Extra precaution should be taken if using
                 tanning accelerators
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="waitingTime" value="true">Wait 2-3 days to wax before/after tanning with
+                <input type="checkbox" name="waitingTime" value="true" required>Wait 2-3 days to wax before/after tanning with
                 accelerators
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="noHotTubs" value="true">No hot tubs or baths for 24 hours following a body
+                <input type="checkbox" name="noHotTubs" value="true" required>No hot tubs or baths for 24 hours following a body
                 waxing treatment
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="noAbrasives" value="true">No abrasives for 24 hours following a waxing
+                <input type="checkbox" name="noAbrasives" value="true" required>No abrasives for 24 hours following a waxing
                 treatment
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="noDeodorants" value="true">No deodorants for 24 hours following an underarm
+                <input type="checkbox" name="noDeodorants" value="true" required>No deodorants for 24 hours following an underarm
                 waxing treatment
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="extraSensitivity" value="true">Women may experience extra sensitivity to
+                <input type="checkbox" name="extraSensitivity" value="true" required>Women may experience extra sensitivity to
                 waxing up to a week prior to the beginning of their menses
             </label>
         </div>
@@ -737,8 +740,8 @@
         <div class="alert alert-info">
             <h3>Parent or Guardian Consent (Must be completed for clients Under the Age of 18):</h3>
             <div class="form-group">
-				<label for="name">Parent / Guardian Name : </label>
-                <input type="text" class="form-control" id="minor" name="minor">	            </div>
+                <label for="name">Parent / Guardian Name : </label>
+                <input type="text" class="form-control" id="minor" name="minor"></div>
             I authorize Waxing the City estheticians to perform waxing treatments and other services on("Minor").
             This
             authorization is ongoing until written notification from me that
@@ -761,7 +764,7 @@
              data-auto-fit="true"></div>
         <br/>
         <div style="display: none">
-            <input type="textarea" id="imageData" name="imageData" required="required">
+            <input type="textarea" id="imageData" name="imageData">
         </div>
         <input id="signatureClear" type="button" class="btn btn-warning btn-sm" value="Clear"/>
         <br/>

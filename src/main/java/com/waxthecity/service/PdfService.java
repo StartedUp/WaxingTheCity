@@ -52,11 +52,11 @@ public class PdfService {
     @Value("${dropbox.access.token}")
     private String ACCESS_TOKEN;
 
-    public void generatePdf(RegBean regBean) {
+    public void generatePdf(RegBean regBean, String dateValue) {
         LOGGER.info("generating pdf. Source pdf {}", srcPdfDir);
         PdfStamper stamper = null;
         PdfReader reader = null;
-        SimpleDateFormat dateTimeFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        /*SimpleDateFormat dateTimeFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
         String systemDate =new Date().toString(); //IST Time
         LOGGER.info("IST time {} ",systemDate);
         Date date = null;
@@ -73,7 +73,7 @@ public class PdfService {
         //For logger information
         DateFormat da=new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
         da.setTimeZone(java.util.TimeZone.getTimeZone("America/New_York"));
-        LOGGER.info("EST time {} ",da.format(date));
+        LOGGER.info("EST time {} ",da.format(date));*/
 
 
         try {
@@ -83,7 +83,7 @@ public class PdfService {
         }
 
 
-        String pdfName=dateValue + regBean.getName() + ".pdf";
+        String pdfName=dateValue + "registered" + regBean.getName() + ".pdf";
 
         try {
             File file = copySourceFile(regBean, dateValue);
@@ -125,7 +125,7 @@ public class PdfService {
             String diabetic[] = form.getAppearanceStates("Are you diabetic Yes");
             LOGGER.info("Diabetic yes state {}", diabetic);
             form.setField("Are you diabetic Yes", regBean.isDiabetic()?"On":"Off");
-            form.setField("No", regBean.isDiabetic()?"Off":"On");
+            form.setField("No_2", regBean.isDiabetic()?"Off":"On");
             form.setField("re youcould you be pregnant Yes",
                     regBean.isPregnant() ?"On":"Off");
             form.setField("No_3",
@@ -170,9 +170,9 @@ public class PdfService {
             form.setField("Neck", regBean.isNeck() ?"On":"Off");
 
             LOGGER.info("Pdf pages {}",reader.getNumberOfPages());
-            Image image = Image.getInstance(signImagePath + dateValue + regBean.getName() + ".png");
+            Image image = Image.getInstance(signImagePath + dateValue + "registered" +regBean.getName() + ".png");
             PdfImage stream = new PdfImage(image, "", null);
-            stream.put(new PdfName("Sign"), new PdfName(dateValue + regBean.getName() + ".pdf"));
+            stream.put(new PdfName("Sign"), new PdfName(dateValue +"registered"+ regBean.getName() + ".pdf"));
             PdfIndirectObject ref = stamper.getWriter().addToBody(stream);
             image.setDirectReference(ref.getIndirectReference());
             image.setAbsolutePosition(100, 437);
@@ -217,7 +217,7 @@ public class PdfService {
 
     private void createSignature(RegBean regBean, String dateValue) throws Exception{
         File imageFile = new File(
-                signImagePath+dateValue+regBean.getName()+".png");
+                signImagePath+dateValue+"registered"+regBean.getName()+".png");
         if (!imageFile.exists()) {
             imageFile.getParentFile().mkdir();
         }
@@ -242,7 +242,7 @@ public class PdfService {
         if (!file.isDirectory())
             file.mkdir();
 
-        File destination = new File(copyPdfDir + dateValue + regBean.getName() + ".pdf");
+        File destination = new File(copyPdfDir + dateValue +"registered"+ regBean.getName() + ".pdf");
         FileChannel src = new FileInputStream(source).getChannel();
         FileChannel dest = new FileOutputStream(destination).getChannel();
         dest.transferFrom(src, 0, src.size());

@@ -57,9 +57,9 @@ public class FormController {
         if (result.hasErrors()){
             return "waxingTheCityForm";
         }
-        pdfService.generatePdf(regBean);
+        pdfService.generatePdf(regBean, dateValue);
         model.addAttribute("form", regBean)
                 .addAttribute("date",dateValue);
-        return "redirect://wtcforms.jvmhost.net/wtcPdf/generated/"+dateValue+regBean.getName()+".pdf";
+        return "redirect://wtcforms.jvmhost.net/wtcPdf/generated/registered/"+dateValue+"registered"+regBean.getName()+".pdf";
     }
 }
