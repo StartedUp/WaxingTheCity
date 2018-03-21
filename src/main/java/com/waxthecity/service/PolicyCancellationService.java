@@ -153,8 +153,8 @@ public class PolicyCancellationService {
             imageFile.getParentFile().mkdir();
         }
         byte[] imagedata = DatatypeConverter.parseBase64Binary(
-                bean.getImaageData().substring(
-                        bean.getImaageData().indexOf(",") + 1)
+                bean.getImageData().substring(
+                        bean.getImageData().indexOf(",") + 1)
         );
         BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imagedata));
         BufferedImage newBufferedImage = new BufferedImage(bufferedImage.getWidth(),

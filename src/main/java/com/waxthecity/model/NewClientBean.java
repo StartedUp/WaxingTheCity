@@ -42,6 +42,7 @@ public class NewClientBean {
     private boolean diabetic;
     private boolean pregnant;
     private boolean allergy;
+    private String allergyYes;
 
     private String acneMedicines;
     private String acnePeriod;
@@ -63,7 +64,8 @@ public class NewClientBean {
     private boolean noDeodorants;
     private boolean extraSensitivity;
 
-    private String limitation;
+    private String minor;
+   	private String limitation;
     private String imageData;
 
     private boolean browShaping;
@@ -145,7 +147,21 @@ public class NewClientBean {
         return serviceProvider;
     }
 
-    public void setServiceProvider(String serviceProvider) {
+    /**
+	 * @return the allergyYes
+	 */
+	public String getAllergyYes() {
+		return allergyYes;
+	}
+
+	/**
+	 * @param allergyYes the allergyYes to set
+	 */
+	public void setAllergyYes(String allergyYes) {
+		this.allergyYes = allergyYes;
+	}
+
+	public void setServiceProvider(String serviceProvider) {
         this.serviceProvider = serviceProvider;
     }
 
@@ -804,6 +820,20 @@ public class NewClientBean {
     public void setNeck(boolean neck) {
         this.neck = neck;
     }
+    
+    /**
+   	 * @return the minor
+   	 */
+   	public String getMinor() {
+   		return minor;
+   	}
+
+   	/**
+   	 * @param minor the minor to set
+   	 */
+   	public void setMinor(String minor) {
+   		this.minor = minor;
+   	}
 
     @Override
     public String toString() {

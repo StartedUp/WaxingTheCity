@@ -83,7 +83,7 @@
                 }
 
                 if (this.name == 'aspirin') {
-                    if (this.value === 'Yes') {
+                    if (this.value === "Yes") {
                         $('#otherAllergy').prop('disabled', false)
                     }
                     else {
@@ -736,6 +736,9 @@
         </div>
         <div class="alert alert-info">
             <h3>Parent or Guardian Consent (Must be completed for clients Under the Age of 18):</h3>
+            <div class="form-group">
+				<label for="name">Parent / Guardian Name : </label>
+                <input type="text" class="form-control" id="minor" name="minor">	            </div>
             I authorize Waxing the City estheticians to perform waxing treatments and other services on("Minor").
             This
             authorization is ongoing until written notification from me that
@@ -758,7 +761,7 @@
              data-auto-fit="true"></div>
         <br/>
         <div style="display: none">
-            <input type="textarea" id="imageData" name="imageData">
+            <input type="textarea" id="imageData" name="imageData" required="required">
         </div>
         <input id="signatureClear" type="button" class="btn btn-warning btn-sm" value="Clear"/>
         <br/>

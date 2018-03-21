@@ -6,7 +6,7 @@ package com.waxthecity.model;
 public class CancellationBean {
     private String firstName;
     private String lastName;
-    private String imaageData;
+    private String imageData;
 
     public String getFirstName() {
         return firstName;
@@ -24,12 +24,12 @@ public class CancellationBean {
         this.lastName = lastName;
     }
 
-    public String getImaageData() {
-        return imaageData;
+    public String getImageData() {
+        return imageData;
     }
 
-    public void setImaageData(String imaageData) {
-        this.imaageData = imaageData;
+    public void setImageData(String imaageData) {
+        this.imageData = imaageData;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class CancellationBean {
         return "CancellationBean{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", imaageData='" + imaageData + '\'' +
+                ", imaageData='" + imageData + '\'' +
                 '}';
     }
 }
