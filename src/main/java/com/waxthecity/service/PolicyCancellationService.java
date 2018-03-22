@@ -72,13 +72,16 @@ public class PolicyCancellationService {
             //Setting acroform fields.
 
             String creDate = "Text1";
+            String print = "Print";
 
             //String field=form.getField(fieldName);
             form.setGenerateAppearances(true);
             form.setFieldProperty(creDate, "textsize", new Float(0), null);
+            form.setFieldProperty(print, "textsize", new Float(0), null);
 
 
             form.setField(creDate, dateValue);
+            form.setField(print, bean.getFirstName());
 
 
             LOGGER.info("date value : {}", dateValue);
