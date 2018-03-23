@@ -73,7 +73,6 @@ public class PolicyCancellationService {
 
             String creDate = "Text1";
             String print = "Print";
-
             //String field=form.getField(fieldName);
             form.setGenerateAppearances(true);
             form.setFieldProperty(creDate, "textsize", new Float(0), null);
@@ -81,7 +80,7 @@ public class PolicyCancellationService {
 
 
             form.setField(creDate, dateValue);
-            form.setField(print, bean.getFirstName());
+            form.setField(print, bean.getFirstName()+bean.getLastName());
 
 
             LOGGER.info("date value : {}", dateValue);

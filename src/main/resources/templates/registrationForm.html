@@ -97,16 +97,16 @@
                 if (this.value === "Other") {
                     console.log(this.value);
                     $(this).attr('name', 'chsngr');
-                    console.log("drop down name "+this.name);
+                    console.log("drop down name " + this.name);
                     $('#form-service').show();
-                    $('#serviceField').attr('name','serviceProvider');
+                    $('#serviceField').attr('name', 'serviceProvider');
                 }
                 if (this.value !== "Other") {
                     console.log(this.value);
                     $(this).attr('name', 'serviceProvider');
                     console.log(this.name);
                     $('#form-service').hide();
-                    $('#serviceField').attr('name','chang');
+                    $('#serviceField').attr('name', 'chang');
                 }
 
             });
@@ -136,7 +136,8 @@
         <div class="col-sm-12 text-center"><h1>WAXING CONSENT & INTAKE FORM</h1></div>
     </div>
     <div class='row'>
-        <div class="col-sm-12 text-center"><h3>NEW CLIENT</h3></div><br/><br/>
+        <div class="col-sm-12 text-center"><h3>NEW CLIENT</h3></div>
+        <br/><br/>
     </div>
     <form id="waxingForm" action="/save" method="post">
         <div class="row">
@@ -641,68 +642,79 @@
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="sunburned" value="true" required>Sunburned, irritated or areas with open skin cannot
+                <input type="checkbox" name="sunburned" value="true" required>Sunburned, irritated or areas with open
+                skin cannot
                 be waxed
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="tanningBooth" value="true" required>Waxing cannot be performed if you have been in a
+                <input type="checkbox" name="tanningBooth" value="true" required>Waxing cannot be performed if you have
+                been in a
                 tanning booth the same day
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="herpesSimplex" value="true" required>If you have a history of Herpes Simplex, waxing
+                <input type="checkbox" name="herpesSimplex" value="true" required>If you have a history of Herpes
+                Simplex, waxing
                 can cause an outbreak
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="laserSkin" value="true" required>Waxing cannot be performed if you have had laser
+                <input type="checkbox" name="laserSkin" value="true" required>Waxing cannot be performed if you have had
+                laser
                 skin resurfacing within the past year
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="physicianAdministeredPeel" value="true" required>Waxing cannot be administered if
+                <input type="checkbox" name="physicianAdministeredPeel" value="true" required>Waxing cannot be
+                administered if
                 you had a physician administered peel within the past two years
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="extraPrecaution" value="true" required>No sun/tanning booths for 2 days following a
+                <input type="checkbox" name="extraPrecaution" value="true" required>No sun/tanning booths for 2 days
+                following a
                 waxing treatment. Extra precaution should be taken if using
                 tanning accelerators
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="waitingTime" value="true" required>Wait 2-3 days to wax before/after tanning with
+                <input type="checkbox" name="waitingTime" value="true" required>Wait 2-3 days to wax before/after
+                tanning with
                 accelerators
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="noHotTubs" value="true" required>No hot tubs or baths for 24 hours following a body
+                <input type="checkbox" name="noHotTubs" value="true" required>No hot tubs or baths for 24 hours
+                following a body
                 waxing treatment
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="noAbrasives" value="true" required>No abrasives for 24 hours following a waxing
+                <input type="checkbox" name="noAbrasives" value="true" required>No abrasives for 24 hours following a
+                waxing
                 treatment
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="noDeodorants" value="true" required>No deodorants for 24 hours following an underarm
+                <input type="checkbox" name="noDeodorants" value="true" required>No deodorants for 24 hours following an
+                underarm
                 waxing treatment
             </label>
         </div>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" name="extraSensitivity" value="true" required>Women may experience extra sensitivity to
+                <input type="checkbox" name="extraSensitivity" value="true" required>Women may experience extra
+                sensitivity to
                 waxing up to a week prior to their menstrual cycle
             </label>
         </div>
@@ -757,6 +769,23 @@
                 and
                 complete.</b>
         </div>
+        <div class="alert alert-info">
+            <h3 style="color: #ee7421">Cancellation Policy</h3>
+            We kindly ask that any cancellations or changes are made 24 hours prior to your appointment. A
+            notice of less than 24 hours impacts our opportunity to serve other clients. Simply give the studio a
+            call
+            at 617-221-8999 when you need to modify, change, or cancel an appointment. Our studio coordinators
+            are scheduling gurus!
+            We understand “life happens” and you may miss an appointment without notice. However, if you miss
+            more than one appointment, we reserve the right to charge a fee of up to 50% of the cost of the
+            scheduled services for a late cancellation and 100% for a “No Show”.
+            We require a Credit Card on file for all appointments.
+            <br/>
+            <br/>
+            <b>I understand and agree to this policy</b>
+            <br/>
+        </div>
+
         <label>Signature:</label>
         <div class='js-signature' data-line-color="#000000"
              data-line-width="3" data-width="600" data-height="200"
