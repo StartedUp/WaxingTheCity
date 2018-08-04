@@ -3,32 +3,6 @@
  */
 package com.waxthecity.service;
 
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.channels.FileChannel;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import javax.imageio.ImageIO;
-import javax.xml.bind.DatatypeConverter;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
@@ -38,14 +12,23 @@ import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.pdf.AcroFields;
-import com.itextpdf.text.pdf.PdfContentByte;
-import com.itextpdf.text.pdf.PdfImage;
-import com.itextpdf.text.pdf.PdfIndirectObject;
-import com.itextpdf.text.pdf.PdfName;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.PdfStamper;
+import com.itextpdf.text.pdf.*;
 import com.waxthecity.model.NewClientBean;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
+import org.apache.pdfbox.pdmodel.interactive.form.PDField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import javax.imageio.ImageIO;
+import javax.xml.bind.DatatypeConverter;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.nio.channels.FileChannel;
 
 /**
  * @author balaji
@@ -302,7 +285,7 @@ public class NewClientService {
 	private void createSignature(NewClientBean bean, String dateValue) throws Exception {
 		File imageFile = new File(signImagePath + dateValue+"new" + bean.getFirstName()+bean.getLastName() + ".png");
 		if (!imageFile.exists()) {
-			imageFile.getParentFile().mkdir();
+			imageFile.getParentFile().mkdirs();
 		}
 		byte[] imagedata = DatatypeConverter
 				.parseBase64Binary(bean.getImageData().substring(bean.getImageData().indexOf(",") + 1));
@@ -317,11 +300,11 @@ public class NewClientService {
 	public File copySourceFile(NewClientBean bean, String dateValue) throws IOException {
 		File source = new File(srcPdfDir);
 		if (!source.exists()) {
-			source.getParentFile().mkdir();
+			source.getParentFile().mkdirs();
 		}
 		File file = new File(copyPdfDir);
 		if (!file.isDirectory())
-			file.mkdir();
+			file.mkdirs();
 
 		File destination = new File(copyPdfDir + dateValue +"new"+ bean.getFirstName()+bean.getLastName() + ".pdf");
 		FileChannel src = new FileInputStream(source).getChannel();

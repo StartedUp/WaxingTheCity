@@ -23,17 +23,10 @@ import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
 import javax.xml.bind.DatatypeConverter;
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.channels.FileChannel;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * Created by Balaji on 8/12/17.
@@ -219,7 +212,7 @@ public class PdfService {
         File imageFile = new File(
                 signImagePath+dateValue+"registered"+regBean.getName()+".png");
         if (!imageFile.exists()) {
-            imageFile.getParentFile().mkdir();
+            imageFile.getParentFile().mkdirs();
         }
         byte[] imagedata = DatatypeConverter.parseBase64Binary(
                 regBean.getImageData().substring(
@@ -236,11 +229,11 @@ public class PdfService {
     public File copySourceFile(RegBean regBean, String dateValue) throws IOException {
         File source = new File(srcPdfDir);
         if (!source.exists()) {
-            source.getParentFile().mkdir();
+            source.getParentFile().mkdirs();
         }
         File file = new File(copyPdfDir);
         if (!file.isDirectory())
-            file.mkdir();
+            file.mkdirs();
 
         File destination = new File(copyPdfDir + dateValue +"registered"+ regBean.getName() + ".pdf");
         FileChannel src = new FileInputStream(source).getChannel();

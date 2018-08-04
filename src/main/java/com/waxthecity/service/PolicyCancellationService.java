@@ -7,10 +7,9 @@ import com.dropbox.core.v2.files.FileMetadata;
 import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.users.FullAccount;
-import com.itextpdf.text.*;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.*;
 import com.waxthecity.model.CancellationBean;
-import com.waxthecity.model.RegBean;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
@@ -23,16 +22,9 @@ import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
 import javax.xml.bind.DatatypeConverter;
 import java.awt.*;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.channels.FileChannel;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by Balaji on 11/3/18.
@@ -132,7 +124,7 @@ public class PolicyCancellationService {
         File imageFile = new File(
                 signImagePath + dateValue + "cancel" + bean.getFirstName() + bean.getLastName() + ".png");
         if (!imageFile.exists()) {
-            imageFile.getParentFile().mkdir();
+            imageFile.getParentFile().mkdirs();
         }
         byte[] imagedata = DatatypeConverter.parseBase64Binary(
                 bean.getImageData().substring(
@@ -151,11 +143,11 @@ public class PolicyCancellationService {
         File source = new File(srcPdfDir);
         LOGGER.error("Source file : {} ", source.exists());
         if (!source.exists()) {
-            source.getParentFile().mkdir();
+            source.getParentFile().mkdirs();
         }
         File file = new File(copyPdfDir);
         if (!file.isDirectory())
-            file.mkdir();
+            file.mkdirs();
 
         File destination = new File(copyPdfDir + dateValue + "cancel" + bean.getFirstName() + bean.getLastName() + ".pdf");
         FileChannel src = new FileInputStream(source).getChannel();
